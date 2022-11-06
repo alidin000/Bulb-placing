@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Light Bulb Game</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <h1 class="timer">BULB GAME</h1>
+    <div id="inputPart">
+        <select id="sizeOfMap">
+            <option value="easy">Easy</option>
+            <option value="advanced">Advanced</option>
+            <option value="extreme">Extreme</option>
+            <option value="custom">Custom Map</option>
+        </select>
+        <br>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        <button type="button" id="playButton">Play</button>
+    </div>
+    <div id="gamePart" style="display:none;">
+        <label class="timer" id="minutes">00</label>
+        <label class="timer">:</label>
+        <label class="timer" id="seconds">00</label>
+        <table id="gameTable"></table>
+    </div>
+</body>
+<script src="gameLogic/index.js"></script>
+<script src="timer.js"></script>
+</html>
+
+<!-- 
+    TODO: interface
+    TODO: map selector=> 3 levels + custom map
+    TODO: scoreboard etc
+ -->
