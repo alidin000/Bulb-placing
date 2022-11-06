@@ -132,28 +132,71 @@ function light(i, j) {
         tempArr2 = bulbLocation
     }
 
-    let k = j + 1
-    while (k < tempArr.length && tempArr[i][k] === -1) {
-        if (!(tempArr2[i][k] > 0)) {
-            table.rows[i].cells[k].style.backgroundColor = 'yellow'
+    foo()
+    function foo(k = j+1) {
+        if (k < tempArr.length && tempArr[i][k] === -1) {
+            // something
+            if (!(tempArr2[i][k] > 0)) {
+                table.rows[i].cells[k].style.backgroundColor = 'yellow'
+            }
+            setTimeout(() => foo(k + 1), 150)
         }
-        k++
     }
-    k = j - 1
-    while (k >= 0 && tempArr[i][k] === -1) {
-        if (!(tempArr2[i][k] > 0)) { table.rows[i].cells[k].style.backgroundColor = 'yellow' }
-        k--
+
+    // let k = j + 1
+    // while (k < tempArr.length && tempArr[i][k] === -1) {
+    //     if (!(tempArr2[i][k] > 0)) {
+    //         table.rows[i].cells[k].style.backgroundColor = 'yellow'
+    //     }
+    //     k++
+    // }
+
+    foo1()
+    function foo1(k = j-1) {
+        if (k >= 0 && tempArr[i][k] === -1) {
+            // something
+            if (!(tempArr2[i][k] > 0)) { table.rows[i].cells[k].style.backgroundColor = 'yellow' }
+            setTimeout(() => foo1(k - 1), 150)
+        }
     }
-    k = i + 1
-    while (k < tempArr.length && tempArr[k][j] === -1) {
-        if (!(tempArr2[k][j] > 0)) { table.rows[k].cells[j].style.backgroundColor = 'yellow' }
-        k++
+
+    // k = j - 1
+    // while (k >= 0 && tempArr[i][k] === -1) {
+    //     if (!(tempArr2[i][k] > 0)) { table.rows[i].cells[k].style.backgroundColor = 'yellow' }
+    //     k--
+    // }
+
+
+    foo2()
+    function foo2(k = i+1) {
+        if (k < tempArr.length && tempArr[k][j] === -1) {
+            // something
+            if (!(tempArr2[k][j] > 0)) { table.rows[k].cells[j].style.backgroundColor = 'yellow' }
+            setTimeout(() => foo2(k + 1), 150)
+        }
     }
-    k = i - 1
-    while (k >= 0 && tempArr[k][j] === -1) {
-        if (!(tempArr2[k][j] > 0)) { table.rows[k].cells[j].style.backgroundColor = 'yellow' }
-        k--
+
+    // k = i + 1
+    // while (k < tempArr.length && tempArr[k][j] === -1) {
+    //     if (!(tempArr2[k][j] > 0)) { table.rows[k].cells[j].style.backgroundColor = 'yellow' }
+    //     k++
+    // }
+
+    foo3()
+    function foo3(k = i-1) {
+        if (k >= 0 && tempArr[k][j] === -1) {
+            // something
+            if (!(tempArr2[k][j] > 0)) { table.rows[k].cells[j].style.backgroundColor = 'yellow' }
+            setTimeout(() => foo3(k - 1), 150)
+        }
     }
+
+    // k = i - 1
+    // while (k >= 0 && tempArr[k][j] === -1) {
+    //     if (!(tempArr2[k][j] > 0)) { table.rows[k].cells[j].style.backgroundColor = 'yellow' }
+    //     k--
+    // }
+    
     tempArr2[i][j] = 1
 }
 
