@@ -21,16 +21,20 @@
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required>
         <button type="button" id="playButton">Play</button>
+        <button type="button" id="loadGame">Load</button>
     </div>
     <div id="gamePart" style="display:none;">
         <label class="timer" id="minutes">00</label>
         <label class="timer">:</label>
         <label class="timer" id="seconds">00</label>
         <table id="gameTable"></table>
+        <button type="button" id="save">Save</button>
     </div>
 </body>
-<script src="gameLogic/index.js"></script>
-<script src="timer.js"></script>
+<script src="gameLogic/game.js"></script>
+<script src="features/timer.js"></script>
+<script src="features/gameSaving.js"></script>
+<script src="gameLogic/demo.js"></script>
 </html>
 
 <!-- 

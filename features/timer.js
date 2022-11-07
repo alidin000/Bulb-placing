@@ -1,11 +1,17 @@
 var minutesLabel = document.getElementById("minutes");
 var secondsLabel = document.getElementById("seconds");
 var totalSeconds = 0;
-let gameFinished = false
+
+function startTimer(start)
+{
+    totalSeconds = start
+    setInterval(setTime, 1000);
+}
 
 function setTime()
 {
-    if(gameFinished) return
+    if(myGame.gameFinished) return
+    myGame.timeCount = totalSeconds
     ++totalSeconds;
     secondsLabel.innerHTML = pad(totalSeconds%60);
     minutesLabel.innerHTML = pad(parseInt(totalSeconds/60));
