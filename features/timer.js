@@ -12,6 +12,7 @@ function setTime()
 {
     if(myGame.gameFinished) return
     myGame.timeCount = totalSeconds
+    gameWon(myGame)
     ++totalSeconds;
     secondsLabel.innerHTML = pad(totalSeconds%60);
     minutesLabel.innerHTML = pad(parseInt(totalSeconds/60));

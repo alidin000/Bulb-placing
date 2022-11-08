@@ -1,4 +1,5 @@
 class game {
+    username
     difficulty
     tableSize
     wrongSolution
@@ -6,7 +7,7 @@ class game {
     bulbLocation
     blackSquareLocation
     timeCount
-    constructor(difficulty, tableSize, timeCount, wrongSolution, gameFinished, bulbLocation, blackSquareLocation) {
+    constructor(difficulty, tableSize, timeCount, wrongSolution, gameFinished, bulbLocation, blackSquareLocation, username) {
         this.difficulty = difficulty;
         this.tableSize = tableSize;
         this.wrongSolution = (wrongSolution === undefined) ? true : wrongSolution
@@ -20,6 +21,7 @@ class game {
         else {
             this.blackSquareLocation = blackSquareLocation
         }
+        this.username = username
         setInterval(autoSave, 1000);
     }
 
@@ -111,7 +113,7 @@ class game {
                 if (!(tempBulbLocation[i][k] > 0)) {
                     table.rows[i].cells[k].style.backgroundColor = 'yellow'
                 }
-                setTimeout(() => foo(k + 1), 150)
+                setTimeout(() => foo(k + 1), 100)
             }
             else
                 gameWon(myGame)
@@ -121,7 +123,7 @@ class game {
         function foo1(k = j - 1) {
             if (k >= 0 && tempBlackSquareLocation[i][k] === -1) {
                 if (!(tempBulbLocation[i][k] > 0)) { table.rows[i].cells[k].style.backgroundColor = 'yellow' }
-                setTimeout(() => foo1(k - 1), 150)
+                setTimeout(() => foo1(k - 1), 100)
             }
             else
                 gameWon(myGame)
@@ -131,7 +133,7 @@ class game {
         function foo2(k = i + 1) {
             if (k < tempBlackSquareLocation.length && tempBlackSquareLocation[k][j] === -1) {
                 if (!(tempBulbLocation[k][j] > 0)) { table.rows[k].cells[j].style.backgroundColor = 'yellow' }
-                setTimeout(() => foo2(k + 1), 150)
+                setTimeout(() => foo2(k + 1), 100)
             }
             else
                 gameWon(myGame)
@@ -141,7 +143,7 @@ class game {
         function foo3(k = i - 1) {
             if (k >= 0 && tempBlackSquareLocation[k][j] === -1) {
                 if (!(tempBulbLocation[k][j] > 0)) { table.rows[k].cells[j].style.backgroundColor = 'yellow' }
-                setTimeout(() => foo3(k - 1), 150)
+                setTimeout(() => foo3(k - 1), 100)
             }
             else
                 gameWon(myGame)
@@ -351,9 +353,15 @@ const loadButton = document.querySelector('#loadGame')
 let myGame
 
 loadButton.addEventListener('click', function () {
-    let tempObj = JSON.parse(localStorage.getItem('lastGame'))
+    let user = document.querySelector('#username').value
+    if(localStorage.getItem(user) === null){
+        alert('You do not have saved games or write your name correctly')
+        return
+    }
+    let tempArr = JSON.parse(localStorage.getItem(user))
+    let tempObj = tempArr[tempArr.length-1]
     startTimer(tempObj.timeCount)
-    myGame = new game(tempObj.difficulty, tempObj.tableSize, tempObj.timeCount, tempObj.wrongSolution, tempObj.gameFinished, tempObj.bulbLocation, tempObj.blackSquareLocation)
+    myGame = new game(tempObj.difficulty, tempObj.tableSize, tempObj.timeCount, tempObj.wrongSolution, tempObj.gameFinished, tempObj.bulbLocation, tempObj.blackSquareLocation, tempObj.username)
     inputPart.style.display = 'none'
     document.querySelector('#gamePart').style.display = 'block'
 
@@ -370,8 +378,14 @@ loadButton.addEventListener('click', function () {
 })
 
 playButton.addEventListener('click', function () {
+
     let size
     username = document.querySelector('#username').value
+    if(username.length === 0)
+    {
+        alert('Username required')
+        return
+    }
     difficulty = input.value
 
     if (input.value === 'easy' || input.value === 'advanced') {
@@ -387,7 +401,7 @@ playButton.addEventListener('click', function () {
     inputPart.style.display = 'none'
     document.querySelector('#gamePart').style.display = 'block'
 
-    myGame = new game(difficulty, size, undefined, undefined, undefined, undefined, undefined);
+    myGame = new game(difficulty, size, undefined, undefined, undefined, undefined, undefined, username);
     startTimer(0)
 
     createTable(myGame)
@@ -441,10 +455,22 @@ table.addEventListener('click', function (e) {
         winText.classList.add('winStyle')
         winText.style.display = 'block'
         document.querySelector('body').appendChild(winText)
-        console.log(JSON.stringify(myGame))
-        // myGame.timeCount = totalSeconds
-        localStorage.setItem('lastGame', JSON.stringify(myGame))
-        console.log((JSON.parse(localStorage.getItem('lastGame'))));
+        if (localStorage.getItem(myGame.username) === null)
+            localStorage.setItem(myGame.username, '[]')
+
+        let tempO = JSON.parse(localStorage.getItem(myGame.username))
+
+        tempO.push(myGame)
+
+        localStorage.setItem(myGame.username, JSON.stringify(tempO))
+
+        if (localStorage.getItem('scores') === null) {
+            localStorage.setItem('scores', '[]')
+        }
+        let scores = JSON.parse(localStorage.getItem('scores'))
+        scores.push({ name: myGame.username, score: totalSeconds })
+        localStorage.setItem('scores', JSON.stringify(scores))
+        console.log(scores);
     }
     else {
         winText.style.display = 'none'
