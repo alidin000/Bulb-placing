@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,20 +9,45 @@
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+
 <body>
     <h1 class="timer">BULB GAME</h1>
     <div id="inputPart">
-        <select style="font-size: 2em;" id="sizeOfMap">
+        <select style="font-size: 2em;" id="sizeOfMap" aria-placeholder="Game Mode">
+            <option value="" disabled selected>Select Difficulty</option>
             <option value="easy">Easy</option>
             <option value="advanced">Advanced</option>
             <option value="extreme">Extreme</option>
             <option value="custom">Custom Map</option>
         </select>
         <br>
-        <label class="input" for="username">Username:</label>
-        <input style="font-size: 2em;" type="text" id="username" name="username" required>
-        <button style="font-size: 2em;" type="button" id="playButton">Play</button>
-        <button style="font-size: 2em;" type="button" id="loadGame">Load</button>
+        <div>
+            <input style="font-size: 2em;" type="text" id="username" name="username" placeholder="Enter Username" required>
+            <button style="font-size: 2em;" type="button" id="playButton">Play</button>
+            <button style="font-size: 2em;" type="button" id="loadGame">Load</button>
+        </div>
+    </div>
+    <div class="scoreBoardStyle">
+        <button id="showTable">Scoreboard</button>
+        <div class="container" id="scorePart" style="display: none;">
+            <header>
+                <h1>Scoreboard</h1>
+            </header>
+            <article>
+                <div class="article">
+                    <table id="tableS">
+                        <thead id="theadS">
+                            <tr>
+                                <td>Name</td>
+                                <td>Score</td>
+                            </tr>
+                        </thead>
+                </div>  
+                        <tbody>
+                        </tbody>
+                    </table>
+            </article>
+        </div>
     </div>
     <div id="gamePart" style="display:none;">
         <label class="timer" id="minutes">00</label>
@@ -29,15 +55,16 @@
         <label class="timer" id="seconds">00</label>
         <table id="gameTable"></table>
         <button style="font-size: 2em;" type="button" id="save">Save</button>
+        <button style="font-size: 2em;" type="button" id="exit">Exit</button>
     </div>
 </body>
 <script src="features/timer.js"></script>
 <script src="features/gameSaving.js"></script>
 <script src="gameLogic/demo.js"></script>
+
 </html>
 
 <!-- 
     TODO: interface
     TODO: map selector=> 3 levels + custom map
-    TODO: scoreboard etc
  -->

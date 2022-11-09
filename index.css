@@ -1,59 +1,161 @@
 body {
-    font: 62.5%/1.5 "Lucida Grande", "Lucida Sans", Tahoma, Verdana, sans-serif;
-    background: url(/resources/backPic.jpg) repeat;
-    color: #000000;
-    text-align: center;
+  font: 62.5%/1.5 "Lucida Grande", "Lucida Sans", Tahoma, Verdana, sans-serif;
+  background: url(/resources/bacPic.png) repeat;
+  color: #000000;
+  background-color: #053800;
+  text-align: center;
 }
 
 #gameTable {
-    border-collapse: collapse;
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
+  border-collapse: collapse;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .tableDesing {
-    border: 1.5px solid black;
-    background-color: rgb(207, 207, 207);
-    font-size: 15px;
-    width: 50px;
-    height: 50px;
+  border: 1.5px solid black;
+  background-color: rgb(207, 207, 207);
+  font-size: 15px;
+  width: 50px;
+  height: 50px;
 }
 
 .blackSquare{
-    background-color: #000000;
+  background-color: #000000;
 }
 
 .winStyle {
-    font-family: "Arial Black", sans-serif;
-    font-size: 4.5em;
-    letter-spacing: -1px;
-    background-color: black;
-    color: white;
-   }
+  font-family: "Arial Black", sans-serif;
+  font-size: 4.5em;
+  letter-spacing: -1px;
+  background-color: black;
+  color: white;
+ }
 
 .highlight {
-    /* background-color: orange; */
-    animation-duration: 0.9s;
-    animation-name: fade-in-out;
-  }
-  
+  /* background-color: orange; */
+  animation-duration: 0.9s;
+  animation-name: fade-in-out;
+}
+
 @keyframes fade-in-out {
-    10% {
-      background-color: rgb(255, 0, 0);
-    }
-    to {
-      background-color: lightgray;
-    }
+  10% {
+    background-color: rgb(255, 0, 0);
   }
+  to {
+    background-color: lightgray;
+  }
+}
 
 
 .timer{
-    font-size: 5em;
-    background-color: bisque;
+  font-size: 5em;
+}
+/* newly added stuff =========================================== */
+button{
+background-color: white;
+border-radius: 15px;
+padding: 10px;
+outline: none;
+border: none;
+outline: 2px solid black;
+
+}
+button:hover{
+outline: 2px solid blue;
+color: blue;
+}
+#username {
+margin-top: 20px;
+padding: 10px;
+border-radius: 15px;
+border: none;
+outline: 2px solid black;
+margin-right: 10px;
+}
+#username:focus {
+outline: 2px solid blue;
 }
 
+#playButton {
+margin-right: 10px;
+background-color: black;
+color: white;
+}
+#playButton:hover{
+background-color: blue;
+
+}
+
+#showTable {
+margin-top: 20px;
+}
+
+#showTable{
+border: none;
+margin-bottom: 10px;
+/* outline: none; */
+}
+
+#sizeOfMap {
+padding: 10px;
+border-radius: 15px;
+outline: 2px solid black;
+}
+
+#save {
+margin-top: 20px;
+}
+
+/* end of newly added stuff  ===========================================*/
+
 .input{
-  font-size: 4em;
-  color: rgb(255, 255, 255);
+font-size: 4em;
+color: rgb(255, 255, 255);
 } 
+
+.scoreBoardStyle{
+display: inline-block;
+justify-content: center;
+align-items: center;
+/* border: 1px solid rgb(0, 0, 0); */
+}
+
+.container {
+
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+
+background-color: beige;
+}
+#tableS {
+min-width: 320px;
+border-collapse: collapse;
+white-space: nowrap;
+}
+
+#theadS {
+background-color: black;
+color: white;
+font-size: 100%;
+}
+
+.article {
+background-color: aliceblue;
+text-align: center;
+}
+
+.scoreboard-score {
+font-weight: bold;
+font-size: 120%;
+}
+
+.scoreboard-team {
+font-weight: bold;
+display: flex;
+justify-content: center;
+align-items: center;
+}

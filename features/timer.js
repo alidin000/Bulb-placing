@@ -1,11 +1,12 @@
 var minutesLabel = document.getElementById("minutes");
 var secondsLabel = document.getElementById("seconds");
 var totalSeconds = 0;
+var helperFunc
 
 function startTimer(start)
 {
     totalSeconds = start
-    setInterval(setTime, 1000);
+    helperFunc = setInterval(setTime, 1000);
 }
 
 function setTime()

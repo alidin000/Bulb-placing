@@ -363,6 +363,7 @@ loadButton.addEventListener('click', function () {
     startTimer(tempObj.timeCount)
     myGame = new game(tempObj.difficulty, tempObj.tableSize, tempObj.timeCount, tempObj.wrongSolution, tempObj.gameFinished, tempObj.bulbLocation, tempObj.blackSquareLocation, tempObj.username)
     inputPart.style.display = 'none'
+    document.getElementById('showTable').style.display = 'none'
     document.querySelector('#gamePart').style.display = 'block'
 
     createTable(myGame)
@@ -399,6 +400,7 @@ playButton.addEventListener('click', function () {
         return
     }
     inputPart.style.display = 'none'
+    document.getElementById('showTable').style.display = 'none'
     document.querySelector('#gamePart').style.display = 'block'
 
     myGame = new game(difficulty, size, undefined, undefined, undefined, undefined, undefined, username);
