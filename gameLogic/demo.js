@@ -22,7 +22,7 @@ class game {
             this.blackSquareLocation = blackSquareLocation
         }
         this.username = username
-        setInterval(autoSave, 500);
+        // setInterval(autoSave, 500);
     }
 
     createArray(size) {
@@ -80,7 +80,7 @@ class game {
         else if (type === 'extreme') {
             arr[0][1] = -2;
             arr[1][5] = 3;
-            arr[1][7] = 3;
+            arr[1][7] = 2;
             arr[1][9] = -2;
             arr[2][1] = 0;
             arr[2][2] = -2;
@@ -344,14 +344,10 @@ class game {
             }
         }
     }
-    blackSquareStyle()
-    {
-        for(let i = 0; i<this.blackSquareLocation.length;i++)
-        {
-            for(let j = 0; j<this.blackSquareLocation.length;j++)
-            {
-                if(this.blackSquareLocation[i][j] > -1)
-                {
+    blackSquareStyle() {
+        for (let i = 0; i < this.blackSquareLocation.length; i++) {
+            for (let j = 0; j < this.blackSquareLocation.length; j++) {
+                if (this.blackSquareLocation[i][j] > -1) {
                     let count = 0
                     if (i > 0 && this.bulbLocation[i - 1][j] > 0) {
                         count++
@@ -365,12 +361,10 @@ class game {
                     if (j < this.blackSquareLocation.length - 1 && this.bulbLocation[i][j + 1] > 0) {
                         count++
                     }
-                    if(count === this.blackSquareLocation[i][j])
-                    {
+                    if (count === this.blackSquareLocation[i][j]) {
                         table.rows[i].cells[j].style.color = 'green'
                     }
-                    else 
-                    {
+                    else {
                         table.rows[i].cells[j].style.color = 'white'
                     }
                 }
@@ -515,7 +509,7 @@ table.addEventListener('click', function (e) {
             }
         }
         if (!contains)
-            scoress.push({ name: myGame.username,map: myGame.difficulty,score: totalSeconds })
+            scoress.push({ name: myGame.username, map: myGame.difficulty, score: totalSeconds })
 
 
         localStorage.setItem('scores', JSON.stringify(scoress))
@@ -552,20 +546,27 @@ function createTable(obj) {
 
 function gameWon(gameObj) {
     if (gameObj.wrongSolution) {
-        gameObj.gameFinished = false;
-        return false;
+        gameObj.gameFinished = false
+        return false
     }
 
     let countBulb = 0
     let countBlSquare = 0
     let litSquares = 0
+
     for (let i = 0; i < gameObj.blackSquareLocation.length; i++) {
         for (let j = 0; j < gameObj.blackSquareLocation.length; j++) {
             if (gameObj.bulbLocation[i][j] > 0) countBulb++;
             if (gameObj.blackSquareLocation[i][j] !== -1) countBlSquare++;
             if (table.rows[i].cells[j].style.backgroundColor === 'yellow') litSquares++
+            if (gameObj.blackSquareLocation[i][j] > -1) {
+                if (table.rows[i].cells[j].style.color !== 'green') {
+                    gameObj.gameFinished = false
+                    return false
+                }
+            }
         }
     }
-    gameObj.gameFinished = countBulb + litSquares === (gameObj.blackSquareLocation.length * gameObj.blackSquareLocation.length - countBlSquare)
+    gameObj.gameFinished = (countBulb + litSquares + countBlSquare) === gameObj.blackSquareLocation.length * gameObj.blackSquareLocation.length
     return gameObj.gameFinished;
 }

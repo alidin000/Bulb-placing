@@ -56,6 +56,12 @@ td {
   }
 }
 
+.yellowBack {
+  background: #eff302;
+  transition-property: background;
+  transition-duration: 1s;
+  transition-timing-function: linear;
+}
 
 .timer {
   font-size: 5em;
@@ -173,4 +179,23 @@ button:hover {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.map .visual {
+  width: 150px;
+  height: 150px;
+  border: 1px solid gray;
+}
+.maps {
+  display: flex;
+  flex-wrap: wrap;
+  /* justify-content: space-around; */
+}
+
+.map {
+  flex-basis: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px 5px;
 }
