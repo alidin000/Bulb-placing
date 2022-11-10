@@ -56,10 +56,17 @@ td {
   }
 }
 
+.default{
+  background-color:rgb(207, 207, 207);
+}
+
+.redBack{
+  background-color:rgb(255, 0, 0);
+}
 .yellowBack {
-  background: #eff302;
+  background-color: #eff302;
   transition-property: background;
-  transition-duration: 1s;
+  transition-duration: 0.8s;
   transition-timing-function: linear;
 }
 

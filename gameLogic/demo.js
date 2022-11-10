@@ -107,48 +107,31 @@ class game {
     light(i, j) {
         let tempBulbLocation = this.bulbLocation
         let tempBlackSquareLocation = this.blackSquareLocation
-        foo()
-        function foo(k = j + 1) {
-            if (k < tempBulbLocation.length && tempBlackSquareLocation[i][k] === -1) {
-                if (!(tempBulbLocation[i][k] > 0)) {
-                    table.rows[i].cells[k].style.backgroundColor = 'yellow'
-                }
-                setTimeout(() => foo(k + 1), 80)
+
+        let k = j + 1
+        while (k < tempBlackSquareLocation.length && tempBlackSquareLocation[i][k] === -1) {
+            if (!(tempBulbLocation[i][k] > 0)) {
+                table.rows[i].cells[k].classList.add('yellowBack')
             }
-            else
-                gameWon(myGame)
+            k++;
         }
 
-        foo1()
-        function foo1(k = j - 1) {
-            if (k >= 0 && tempBlackSquareLocation[i][k] === -1) {
-                if (!(tempBulbLocation[i][k] > 0)) { table.rows[i].cells[k].style.backgroundColor = 'yellow' }
-                setTimeout(() => foo1(k - 1), 80)
-            }
-            else
-                gameWon(myGame)
+        k = j - 1
+        while (k >= 0 && tempBlackSquareLocation[i][k] === -1) {
+            if (!(tempBulbLocation[i][k] > 0)) { table.rows[i].cells[k].classList.add('yellowBack') }
+            k--
+        }
+        k = i - 1
+        while (k >= 0 && tempBlackSquareLocation[k][j] === -1) {
+            if (!(tempBulbLocation[k][j] > 0)) { table.rows[k].cells[j].classList.add('yellowBack') }
+            k--
         }
 
-        foo2()
-        function foo2(k = i + 1) {
-            if (k < tempBlackSquareLocation.length && tempBlackSquareLocation[k][j] === -1) {
-                if (!(tempBulbLocation[k][j] > 0)) { table.rows[k].cells[j].style.backgroundColor = 'yellow' }
-                setTimeout(() => foo2(k + 1), 80)
-            }
-            else
-                gameWon(myGame)
+        k = i + 1
+        while (k < tempBlackSquareLocation.length && tempBlackSquareLocation[k][j] === -1) {
+            if (!(tempBulbLocation[k][j] > 0)) { table.rows[k].cells[j].classList.add('yellowBack') }   
+            k++
         }
-
-        foo3()
-        function foo3(k = i - 1) {
-            if (k >= 0 && tempBlackSquareLocation[k][j] === -1) {
-                if (!(tempBulbLocation[k][j] > 0)) { table.rows[k].cells[j].style.backgroundColor = 'yellow' }
-                setTimeout(() => foo3(k - 1), 80)
-            }
-            else
-                gameWon(myGame)
-        }
-        gameWon(myGame)
 
         this.bulbLocation[i][j] = 1
         this.blackSquareStyle()
@@ -157,30 +140,32 @@ class game {
         let k = j + 1
         while (k < this.blackSquareLocation.length && this.blackSquareLocation[i][k] === -1) {
             if (!(this.bulbLocation[i][k] > 0))
-                table.rows[i].cells[k].style.backgroundColor = 'rgb(207, 207, 207)'
+                table.rows[i].cells[k].classList.remove('yellowBack')
             k++
         }
         k = j - 1
         while (k >= 0 && this.blackSquareLocation[i][k] === -1) {
             if (!(this.bulbLocation[i][k] > 0))
-                table.rows[i].cells[k].style.backgroundColor = 'rgb(207, 207, 207)'
+                table.rows[i].cells[k].classList.remove('yellowBack')
             k--
         }
 
         k = i + 1
         while (k < this.blackSquareLocation.length && this.blackSquareLocation[k][j] === -1) {
             if (!(this.bulbLocation[k][j] > 0))
-                table.rows[k].cells[j].style.backgroundColor = 'rgb(207, 207, 207)'
+                table.rows[k].cells[j].classList.remove('yellowBack')
             k++
         }
         k = i - 1
         while (k >= 0 && this.blackSquareLocation[k][j] === -1) {
             if (!(this.bulbLocation[k][j] > 0))
-                table.rows[k].cells[j].style.backgroundColor = 'rgb(207, 207, 207)'
+                table.rows[k].cells[j].classList.remove('yellowBack')
             k--
         }
         this.bulbLocation[i][j] = 0
-        table.rows[i].cells[j].style.backgroundColor = 'rgb(207, 207, 207)'
+        table.rows[i].cells[j].classList.remove('yellowBack')
+        table.rows[i].cells[j].classList.remove('redBack')
+        table.rows[i].cells[j].classList.add('default')
         for (let g = 0; g < this.bulbLocation.length; g++) {
             for (let gg = 0; gg < this.bulbLocation[0].length; gg++) {
                 if (this.bulbLocation[g][gg] === 1)
@@ -299,7 +284,9 @@ class game {
         for (let i = 0; i < this.blackSquareLocation.length; i++) {
             for (let j = 0; j < this.blackSquareLocation.length; j++) {
                 if (this.bulbLocation[i][j] > 0) {
-                    table.rows[i].cells[j].style.backgroundColor = 'rgb(207, 207, 207)'
+                    table.rows[i].cells[j].classList.remove('yellowBack')
+                    table.rows[i].cells[j].classList.remove('redBack')
+                    table.rows[i].cells[j].classList.add('default')
                 }
             }
         }
@@ -310,7 +297,9 @@ class game {
                     let k = j + 1
                     while (k < this.blackSquareLocation.length && this.blackSquareLocation[i][k] === -1) {
                         if (this.bulbLocation[i][k] > 0) {
-                            table.rows[i].cells[k].style.backgroundColor = 'rgb(255, 0, 0)'
+                            table.rows[i].cells[j].classList.remove('yellowBack')
+                            table.rows[i].cells[j].classList.remove('default')
+                            table.rows[i].cells[k].classList.add('redBack')
                             this.wrongSolution = true
                         }
                         k++
@@ -319,7 +308,9 @@ class game {
                     while (k >= 0 && this.blackSquareLocation[i][k] === -1) {
                         if (this.bulbLocation[i][k] > 0) {
                             this.wrongSolution = true
-                            table.rows[i].cells[k].style.backgroundColor = 'rgb(255, 0, 0)'
+                            table.rows[i].cells[j].classList.remove('yellowBack')
+                            table.rows[i].cells[j].classList.remove('default')
+                            table.rows[i].cells[k].classList.add('redBack')
                         }
                         k--
                     }
@@ -328,7 +319,9 @@ class game {
                     while (k < this.blackSquareLocation.length && this.blackSquareLocation[k][j] === -1) {
                         if (this.bulbLocation[k][j] > 0) {
                             this.wrongSolution = true
-                            table.rows[k].cells[j].style.backgroundColor = 'rgb(255, 0, 0)'
+                            table.rows[i].cells[j].classList.remove('yellowBack')
+                            table.rows[i].cells[j].classList.remove('default')
+                            table.rows[k].cells[j].classList.add('redBack')
                         }
                         k++
                     }
@@ -336,7 +329,9 @@ class game {
                     while (k >= 0 && this.blackSquareLocation[k][j] === -1) {
                         if (this.bulbLocation[k][j] > 0) {
                             this.wrongSolution = true
-                            table.rows[k].cells[j].style.backgroundColor = 'rgb(255, 0, 0)'
+                            table.rows[i].cells[j].classList.remove('yellowBack')
+                            table.rows[i].cells[j].classList.remove('default')
+                            table.rows[k].cells[j].classList.add('redBack')
                         }
                         k--
                     }
@@ -439,7 +434,6 @@ playButton.addEventListener('click', function () {
 
 // bulb inserting //
 table.addEventListener('click', function (e) {
-    gameWon(myGame)
 
     if (!myGame.gameFinished && (e.target.matches('td') || e.target.matches('i'))) {
         myGame.blackSquareStyle()
@@ -492,16 +486,13 @@ table.addEventListener('click', function (e) {
         tempO.push(myGame)
 
         localStorage.setItem(myGame.username, JSON.stringify(tempO))
-
         if (localStorage.getItem('scores') === null) {
             localStorage.setItem('scores', '[]')
         }
         let scoress = JSON.parse(localStorage.getItem('scores'))
         let contains = false
-        console.log(scoress);
 
         for (let i = 0; i < scoress.length; i++) {
-            console.log(scoress[i].name + "  " + myGame.username)
             if (scoress[i].name === myGame.username && scoress[i].map === myGame.difficulty) {
                 contains = true
                 scoress[i].score = totalSeconds
@@ -558,7 +549,8 @@ function gameWon(gameObj) {
         for (let j = 0; j < gameObj.blackSquareLocation.length; j++) {
             if (gameObj.bulbLocation[i][j] > 0) countBulb++;
             if (gameObj.blackSquareLocation[i][j] !== -1) countBlSquare++;
-            if (table.rows[i].cells[j].style.backgroundColor === 'yellow') litSquares++
+            if (table.rows[i].cells[j].classList.contains('yellowBack')) litSquares++
+
             if (gameObj.blackSquareLocation[i][j] > -1) {
                 if (table.rows[i].cells[j].style.color !== 'green') {
                     gameObj.gameFinished = false
