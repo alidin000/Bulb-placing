@@ -22,7 +22,7 @@ class game {
             this.blackSquareLocation = blackSquareLocation
         }
         this.username = username
-        setInterval(autoSave, 1000);
+        setInterval(autoSave, 500);
     }
 
     createArray(size) {
@@ -113,7 +113,7 @@ class game {
                 if (!(tempBulbLocation[i][k] > 0)) {
                     table.rows[i].cells[k].style.backgroundColor = 'yellow'
                 }
-                setTimeout(() => foo(k + 1), 100)
+                setTimeout(() => foo(k + 1), 80)
             }
             else
                 gameWon(myGame)
@@ -123,7 +123,7 @@ class game {
         function foo1(k = j - 1) {
             if (k >= 0 && tempBlackSquareLocation[i][k] === -1) {
                 if (!(tempBulbLocation[i][k] > 0)) { table.rows[i].cells[k].style.backgroundColor = 'yellow' }
-                setTimeout(() => foo1(k - 1), 100)
+                setTimeout(() => foo1(k - 1), 80)
             }
             else
                 gameWon(myGame)
@@ -133,7 +133,7 @@ class game {
         function foo2(k = i + 1) {
             if (k < tempBlackSquareLocation.length && tempBlackSquareLocation[k][j] === -1) {
                 if (!(tempBulbLocation[k][j] > 0)) { table.rows[k].cells[j].style.backgroundColor = 'yellow' }
-                setTimeout(() => foo2(k + 1), 100)
+                setTimeout(() => foo2(k + 1), 80)
             }
             else
                 gameWon(myGame)
@@ -143,7 +143,7 @@ class game {
         function foo3(k = i - 1) {
             if (k >= 0 && tempBlackSquareLocation[k][j] === -1) {
                 if (!(tempBulbLocation[k][j] > 0)) { table.rows[k].cells[j].style.backgroundColor = 'yellow' }
-                setTimeout(() => foo3(k - 1), 100)
+                setTimeout(() => foo3(k - 1), 80)
             }
             else
                 gameWon(myGame)
@@ -151,6 +151,7 @@ class game {
         gameWon(myGame)
 
         this.bulbLocation[i][j] = 1
+        this.blackSquareStyle()
     }
     unLight(i, j) {
         let k = j + 1
@@ -186,6 +187,7 @@ class game {
                     this.light(g, gg)
             }
         }
+        this.blackSquareStyle()
     }
     check(i, j) {
         let firstS = false  //up side
@@ -342,24 +344,57 @@ class game {
             }
         }
     }
+    blackSquareStyle()
+    {
+        for(let i = 0; i<this.blackSquareLocation.length;i++)
+        {
+            for(let j = 0; j<this.blackSquareLocation.length;j++)
+            {
+                if(this.blackSquareLocation[i][j] > -1)
+                {
+                    let count = 0
+                    if (i > 0 && this.bulbLocation[i - 1][j] > 0) {
+                        count++
+                    }
+                    if (j > 0 && this.bulbLocation[i][j - 1] > 0) {
+                        count++
+                    }
+                    if (i < this.blackSquareLocation.length - 1 && this.bulbLocation[i + 1][j] > 0) {
+                        count++
+                    }
+                    if (j < this.blackSquareLocation.length - 1 && this.bulbLocation[i][j + 1] > 0) {
+                        count++
+                    }
+                    if(count === this.blackSquareLocation[i][j])
+                    {
+                        table.rows[i].cells[j].style.color = 'green'
+                    }
+                    else 
+                    {
+                        table.rows[i].cells[j].style.color = 'white'
+                    }
+                }
+            }
+        }
+    }
 }
 const input = document.querySelector('#sizeOfMap')
 const playButton = document.querySelector('#playButton')
 const inputPart = document.querySelector('#inputPart')
 const table = document.querySelector('#gameTable');
-const winText = document.createElement('h1')
+const winText = document.querySelector('#winText')
 const loadButton = document.querySelector('#loadGame')
 
 let myGame
 
 loadButton.addEventListener('click', function () {
     let user = document.querySelector('#username').value
-    if(localStorage.getItem(user) === null){
+    if (localStorage.getItem(user) === null) {
         alert('You do not have saved games or write your name correctly')
         return
     }
     let tempArr = JSON.parse(localStorage.getItem(user))
-    let tempObj = tempArr[tempArr.length-1]
+    let tempObj = tempArr[tempArr.length - 1]
     startTimer(tempObj.timeCount)
     myGame = new game(tempObj.difficulty, tempObj.tableSize, tempObj.timeCount, tempObj.wrongSolution, tempObj.gameFinished, tempObj.bulbLocation, tempObj.blackSquareLocation, tempObj.username)
     inputPart.style.display = 'none'
@@ -382,8 +417,7 @@ playButton.addEventListener('click', function () {
 
     let size
     username = document.querySelector('#username').value
-    if(username.length === 0)
-    {
+    if (username.length === 0) {
         alert('Username required')
         return
     }
@@ -414,7 +448,7 @@ table.addEventListener('click', function (e) {
     gameWon(myGame)
 
     if (!myGame.gameFinished && (e.target.matches('td') || e.target.matches('i'))) {
-
+        myGame.blackSquareStyle()
         let col
         let row
         if (e.target.matches('td')) {
@@ -453,10 +487,9 @@ table.addEventListener('click', function (e) {
     }
     if (gameWon(myGame)) {
         score = totalSeconds
-        winText.innerHTML = `Hey ${username} congrats, your score is ${score}s`
+        winText.innerHTML = `${username}, score: ${score} seconds`
         winText.classList.add('winStyle')
         winText.style.display = 'block'
-        document.querySelector('body').appendChild(winText)
         if (localStorage.getItem(myGame.username) === null)
             localStorage.setItem(myGame.username, '[]')
 
@@ -469,10 +502,23 @@ table.addEventListener('click', function (e) {
         if (localStorage.getItem('scores') === null) {
             localStorage.setItem('scores', '[]')
         }
-        let scores = JSON.parse(localStorage.getItem('scores'))
-        scores.push({ name: myGame.username, score: totalSeconds })
-        localStorage.setItem('scores', JSON.stringify(scores))
-        console.log(scores);
+        let scoress = JSON.parse(localStorage.getItem('scores'))
+        let contains = false
+        console.log(scoress);
+
+        for (let i = 0; i < scoress.length; i++) {
+            console.log(scoress[i].name + "  " + myGame.username)
+            if (scoress[i].name === myGame.username && scoress[i].map === myGame.difficulty) {
+                contains = true
+                scoress[i].score = totalSeconds
+                break
+            }
+        }
+        if (!contains)
+            scoress.push({ name: myGame.username,map: myGame.difficulty,score: totalSeconds })
+
+
+        localStorage.setItem('scores', JSON.stringify(scoress))
     }
     else {
         winText.style.display = 'none'

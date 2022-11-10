@@ -12,6 +12,7 @@
 
 <body>
     <h1 class="timer">BULB GAME</h1>
+    <h1 id="winText" style="display: none;"></h1>
     <div id="inputPart">
         <select style="font-size: 2em;" id="sizeOfMap" aria-placeholder="Game Mode">
             <option value="" disabled selected>Select Difficulty</option>
@@ -30,23 +31,17 @@
     <div class="scoreBoardStyle">
         <button id="showTable">Scoreboard</button>
         <div class="container" id="scorePart" style="display: none;">
-            <header>
-                <h1>Scoreboard</h1>
-            </header>
-            <article>
-                <div class="article">
-                    <table id="tableS">
-                        <thead id="theadS">
-                            <tr>
-                                <td>Name</td>
-                                <td>Score</td>
-                            </tr>
-                        </thead>
-                </div>  
-                        <tbody>
-                        </tbody>
-                    </table>
-            </article>
+            <table id="tableS">
+                <thead id="theadS">
+                    <tr>
+                        <td>Name</td>
+                        <td>Map</td>
+                        <td>Score</td>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
         </div>
     </div>
     <div id="gamePart" style="display:none;">
@@ -56,6 +51,7 @@
         <table id="gameTable"></table>
         <button style="font-size: 2em;" type="button" id="save">Save</button>
         <button style="font-size: 2em;" type="button" id="exit">Exit</button>
+        <button style="font-size: 2em;" type="button" id="restart">Restart</button>
     </div>
 </body>
 <script src="features/timer.js"></script>

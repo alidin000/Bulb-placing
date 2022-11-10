@@ -21,7 +21,13 @@ body {
   height: 50px;
 }
 
-.blackSquare{
+td {
+  font-family: ArImpact, fantasyial;
+  font-size: 10pt;
+  font-weight: 900;
+}
+
+.blackSquare {
   background-color: #000000;
 }
 
@@ -29,9 +35,10 @@ body {
   font-family: "Arial Black", sans-serif;
   font-size: 4.5em;
   letter-spacing: -1px;
-  background-color: black;
+  margin: -10;
+  /* padding: -10; */
   color: white;
- }
+}
 
 .highlight {
   /* background-color: orange; */
@@ -43,119 +50,127 @@ body {
   10% {
     background-color: rgb(255, 0, 0);
   }
+
   to {
     background-color: lightgray;
   }
 }
 
 
-.timer{
+.timer {
   font-size: 5em;
 }
+
 /* newly added stuff =========================================== */
-button{
-background-color: white;
-border-radius: 15px;
-padding: 10px;
-outline: none;
-border: none;
-outline: 2px solid black;
+button {
+  background-color: white;
+  border-radius: 15px;
+  padding: 10px;
+  outline: none;
+  border: none;
+  outline: 2px solid black;
 
 }
-button:hover{
-outline: 2px solid blue;
-color: blue;
+
+button:hover {
+  outline: 2px solid blue;
+  color: blue;
 }
+
 #username {
-margin-top: 20px;
-padding: 10px;
-border-radius: 15px;
-border: none;
-outline: 2px solid black;
-margin-right: 10px;
+  margin-top: 20px;
+  padding: 10px;
+  border-radius: 15px;
+  border: none;
+  outline: 2px solid black;
+  margin-right: 10px;
 }
+
 #username:focus {
-outline: 2px solid blue;
+  outline: 2px solid blue;
 }
 
 #playButton {
-margin-right: 10px;
-background-color: black;
-color: white;
+  margin-right: 10px;
+  background-color: black;
+  color: white;
 }
-#playButton:hover{
-background-color: blue;
+
+#playButton:hover {
+  background-color: blue;
 
 }
 
 #showTable {
-margin-top: 20px;
+  margin-top: 20px;
 }
 
-#showTable{
-border: none;
-margin-bottom: 10px;
-/* outline: none; */
+#showTable {
+  border: none;
+  margin-bottom: 10px;
+  /* outline: none; */
 }
 
 #sizeOfMap {
-padding: 10px;
-border-radius: 15px;
-outline: 2px solid black;
+  padding: 10px;
+  border-radius: 15px;
+  outline: 2px solid black;
 }
 
 #save {
-margin-top: 20px;
+  margin-top: 20px;
 }
 
 /* end of newly added stuff  ===========================================*/
 
-.input{
-font-size: 4em;
-color: rgb(255, 255, 255);
-} 
+.input {
+  font-size: 4em;
+  color: rgb(255, 255, 255);
+}
 
-.scoreBoardStyle{
-display: inline-block;
-justify-content: center;
-align-items: center;
-/* border: 1px solid rgb(0, 0, 0); */
+.scoreBoardStyle {
+  display: inline-block;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px solid rgb(0, 0, 0); */
 }
 
 .container {
 
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
-background-color: beige;
+  background-color: beige;
 }
+
 #tableS {
-min-width: 320px;
-border-collapse: collapse;
-white-space: nowrap;
+  min-width: 420px;
+  border-collapse: collapse;
+  white-space: nowrap;
 }
 
 #theadS {
-background-color: black;
-color: white;
-font-size: 100%;
+  background-color: black;
+  color: white;
+  font-size: 100%;
 }
 
 .article {
-background-color: aliceblue;
-text-align: center;
+  background-color: aliceblue;
+  text-align: center;
 }
 
 .scoreboard-score {
-font-weight: bold;
-font-size: 120%;
+  min-width: 140px;
+  font-weight: bold;
+  font-size: 120%;
 }
 
 .scoreboard-team {
-font-weight: bold;
-display: flex;
-justify-content: center;
-align-items: center;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

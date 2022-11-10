@@ -1,14 +1,24 @@
 const saveButton = document.querySelector('#save')
 const exitButton = document.querySelector('#exit')
+const restartButton = document.querySelector('#restart')
 const scoreBoard = document.querySelector('#showTable')
 const table2 = document.querySelector('#scorePart')
 
+restartButton.addEventListener('click',function(){
+    myGame = new game(myGame.difficulty, table.rows.length, undefined, undefined, undefined, undefined, undefined, myGame.username);
+    clearInterval(helperFunc)
+    startTimer(0)
+    table.innerHTML = ''
+    createTable(myGame)
+    winText.innerHTML =''
+})
 exitButton.addEventListener('click',function(){
     inputPart.style.display = 'block'
     document.getElementById('showTable').style.display = 'inline-block'
     document.querySelector('#gamePart').style.display = 'none'
     table.innerHTML = ''
     clearInterval(helperFunc)
+    winText.innerHTML =''
 })
 
 saveButton.addEventListener('click',function(){
@@ -41,12 +51,18 @@ scoreBoard.addEventListener('click',function(){
             col.classList.add('scoreboard-team')
             col.appendChild(div)
             col.appendChild(span)
+
             const col2 = document.createElement('td')
             col2.classList.add('scoreboard-score')
-            col2.innerHTML = scores[i].score
+            col2.innerHTML = scores[i].map
+
+            const col3 = document.createElement('td')
+            col3.classList.add('scoreboard-score')
+            col3.innerHTML = scores[i].score
 
             row.appendChild(col);
             row.appendChild(col2);
+            row.appendChild(col3);
 
             tbody.appendChild(row);
         }
