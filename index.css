@@ -67,7 +67,7 @@ td {
   background-color: #eff302;
   transition-property: background;
   transition-duration: 0.8s;
-  transition-timing-function: linear;
+  transition-timing-function:ease-in;
 }
 
 .timer {
@@ -188,11 +188,6 @@ button:hover {
   align-items: center;
 }
 
-.map .visual {
-  width: 150px;
-  height: 150px;
-  border: 1px solid gray;
-}
 .maps {
   display: flex;
   flex-wrap: wrap;

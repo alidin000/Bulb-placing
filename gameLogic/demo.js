@@ -372,35 +372,10 @@ const playButton = document.querySelector('#playButton')
 const inputPart = document.querySelector('#inputPart')
 const table = document.querySelector('#gameTable');
 const winText = document.querySelector('#winText')
-const loadButton = document.querySelector('#loadGame')
 
 let myGame
 
-loadButton.addEventListener('click', function () {
-    let user = document.querySelector('#username').value
-    if (localStorage.getItem(user) === null) {
-        alert('You do not have saved games or write your name correctly')
-        return
-    }
-    let tempArr = JSON.parse(localStorage.getItem(user))
-    let tempObj = tempArr[tempArr.length - 1]
-    startTimer(tempObj.timeCount)
-    myGame = new game(tempObj.difficulty, tempObj.tableSize, tempObj.timeCount, tempObj.wrongSolution, tempObj.gameFinished, tempObj.bulbLocation, tempObj.blackSquareLocation, tempObj.username)
-    inputPart.style.display = 'none'
-    document.getElementById('showTable').style.display = 'none'
-    document.querySelector('#gamePart').style.display = 'block'
 
-    createTable(myGame)
-    myGame.removeRed()
-    for (let g = 0; g < myGame.bulbLocation.length; g++) {
-        for (let gg = 0; gg < myGame.bulbLocation[0].length; gg++) {
-            if (myGame.bulbLocation[g][gg] === 1) {
-                table.rows[g].cells[gg].innerHTML = `<i class="fa fa-lightbulb-o" style="font-size: 30px; color: yellow; transition-duration:.6s;"></i>`
-                myGame.light(g, gg)
-            }
-        }
-    }
-})
 
 playButton.addEventListener('click', function () {
 
@@ -482,8 +457,10 @@ table.addEventListener('click', function (e) {
             localStorage.setItem(myGame.username, '[]')
 
         let tempO = JSON.parse(localStorage.getItem(myGame.username))
-
-        tempO.push(myGame)
+        if(!tempO.includes(myGame))
+        {
+            tempO.push(myGame)
+        }
 
         localStorage.setItem(myGame.username, JSON.stringify(tempO))
         if (localStorage.getItem('scores') === null) {

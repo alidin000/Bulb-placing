@@ -7,6 +7,13 @@ const table2 = document.querySelector('#scorePart')
 
 const savedGamePart = document.querySelector('#tableLocations')
 const savedGamesButton = document.querySelector('#savedGames')
+const exitButtonFromSaved = document.querySelector('#exitFromSaved')
+
+exitButtonFromSaved.addEventListener('click',function(){
+    document.querySelector('#savedGamesPart').style.display = 'none'
+    inputPart.style.display = 'block'
+    document.getElementById('showTable').style.display = 'inline-block'
+})
 
 savedGamesButton.addEventListener('click', function () {
     let user = document.querySelector('#username').value
@@ -23,23 +30,44 @@ savedGamesButton.addEventListener('click', function () {
 
     document.querySelector('#savedGamesPart').style.display = 'block'
 
-    // <div class="map">
-    //     <div class="visual"></div>
-    //     <p>Game 1</p>
-    // </div>
-
     for (let i = 0; i < tempArr.length; i++) {
         let div1 = document.createElement('div')
-        let div2 = document.createElement('div')
-        let p = document.createElement('p')
+        let play = document.createElement('button')
+        let ptag = document.createElement('p')
+        ptag.innerHTML = i
+        ptag.style.display = 'none'
         div1.classList.add('map')
-        div2.classList.add('visual')
-        p.innerHTML = `${(i + 1)} saved game`
-
-        createTableView(tempArr[i].blackSquareLocation, tempArr[i].bulbLocation, div2)
-        div1.appendChild(div2)
-        div1.appendChild(p)
+        play.innerHTML = `Load`
+        play.style = "font-size: 2em;"
+        play.type = 'submit'
+        play.addEventListener('click', doIt)
+        createTableView(tempArr[i].blackSquareLocation, tempArr[i].bulbLocation, div1)
+        div1.appendChild(play)
+        div1.appendChild(ptag)
         savedGamePart.appendChild(div1)
+    }
+
+    function doIt(e) {
+        let tt = parseInt(e.target.nextElementSibling.innerHTML)
+        document.querySelector('#savedGamesPart').style.display = 'none'
+        let user = document.querySelector('#username').value
+        let tempObj = JSON.parse(localStorage.getItem(user))[tt]
+        startTimer(tempObj.timeCount)
+        myGame = new game(tempObj.difficulty, tempObj.tableSize, tempObj.timeCount, tempObj.wrongSolution, tempObj.gameFinished, tempObj.bulbLocation, tempObj.blackSquareLocation, tempObj.username)
+        inputPart.style.display = 'none'
+        document.getElementById('showTable').style.display = 'none'
+        document.querySelector('#gamePart').style.display = 'block'
+
+        createTable(myGame)
+        myGame.removeRed()
+        for (let g = 0; g < myGame.bulbLocation.length; g++) {
+            for (let gg = 0; gg < myGame.bulbLocation[0].length; gg++) {
+                if (myGame.bulbLocation[g][gg] === 1) {
+                    table.rows[g].cells[gg].innerHTML = `<i class="fa fa-lightbulb-o" style="font-size: 30px; color: yellow; transition-duration:.6s;"></i>`
+                    myGame.light(g, gg)
+                }
+            }
+        }
     }
 
 })
@@ -63,7 +91,7 @@ exitButton.addEventListener('click', function () {
     clearInterval(helperFunc)
     winText.innerHTML = ''
     if (confirm("Do you want to save the game?")) {
-        saveButton.click() 
+        saveButton.click()
     }
 })
 
