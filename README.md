@@ -22,6 +22,6 @@
   <li>HTML</li>
   <li>CSS</li>
   <li>JavaScript</li>
-  <li>Browsers local storage</li>
+  <li>Browser's local storage</li>
 </ul>
 
