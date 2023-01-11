@@ -16,3 +16,12 @@
   
   <h5>Game example</h5>
   <img src="/resources/sample.png" alt="Alt text" title="Optional title">
+  
+<h2>Technologies  used</h2>
+<ul>
+  <li>HTML</li>
+  <li>CSS</li>
+  <li>JavaScript</li>
+  <li>Browsers local storage</li>
+</ul>
+
