@@ -22,7 +22,6 @@ class game {
             this.blackSquareLocation = blackSquareLocation
         }
         this.username = username
-        // setInterval(autoSave, 500);
     }
 
     createArray(size) {
@@ -59,7 +58,7 @@ class game {
             arr[3][6] = -2;
             arr[5][1] = -2;
             arr[5][5] = 2;
-            arr[6][3] = 0;
+            arr[6][3] = 3;
 
         }
         else if (type === 'advanced') {
@@ -453,16 +452,7 @@ table.addEventListener('click', function (e) {
         winText.innerHTML = `${username}, score: ${score} seconds`
         winText.classList.add('winStyle')
         winText.style.display = 'block'
-        if (localStorage.getItem(myGame.username) === null)
-            localStorage.setItem(myGame.username, '[]')
 
-        let tempO = JSON.parse(localStorage.getItem(myGame.username))
-        if(!tempO.includes(myGame))
-        {
-            tempO.push(myGame)
-        }
-
-        localStorage.setItem(myGame.username, JSON.stringify(tempO))
         if (localStorage.getItem('scores') === null) {
             localStorage.setItem('scores', '[]')
         }

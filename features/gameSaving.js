@@ -11,6 +11,7 @@ const exitButtonFromSaved = document.querySelector('#exitFromSaved')
 
 exitButtonFromSaved.addEventListener('click',function(){
     document.querySelector('#savedGamesPart').style.display = 'none'
+    savedGamePart.innerHTML = ''
     inputPart.style.display = 'block'
     document.getElementById('showTable').style.display = 'inline-block'
 })
