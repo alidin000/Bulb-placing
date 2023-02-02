@@ -1,3 +1,4 @@
+
 class game {
     username
     difficulty
@@ -366,45 +367,71 @@ class game {
         }
     }
 }
-const input = document.querySelector('#sizeOfMap')
-const playButton = document.querySelector('#playButton')
-const inputPart = document.querySelector('#inputPart')
-const table = document.querySelector('#gameTable');
-const winText = document.querySelector('#winText')
+
+const table = document.querySelector("#table")
 
 let myGame
 
 
-
-playButton.addEventListener('click', function () {
-
-    let size
-    username = document.querySelector('#username').value
-    if (username.length === 0) {
+document.getElementById("startButton").addEventListener("click", (e) => {
+    let playerName = document.getElementById("playNameInput").value;
+    const div = document.querySelector(".hovered")
+    if(div == null) {
+        alert("Please choose one of maps below")
+        return
+    }
+    if (playerName.length === 0) {
         alert('Username required')
         return
     }
-    difficulty = input.value
 
-    if (input.value === 'easy' || input.value === 'advanced') {
-        size = 7
-    }
-    else if (input.value === 'extreme') {
-        size = 10
-    }
-    else {
-        alert('This feature is not released yet(')
-        return
-    }
-    inputPart.style.display = 'none'
-    document.getElementById('showTable').style.display = 'none'
-    document.querySelector('#gamePart').style.display = 'block'
+    document.querySelectorAll(".main-item").forEach((menuItem) => {
+      menuItem.classList.add("hide");
+    });
+    document.getElementById("play-screen").classList.remove("hide");
+    
 
-    myGame = new game(difficulty, size, undefined, undefined, undefined, undefined, undefined, username);
-    startTimer(0)
+    
+    document.querySelectorAll(".hovered").forEach((hovered) => {
+        hovered.classList.remove("hovered");
+    });
+    document.querySelector(".playerName").querySelector("p").innerText =
+    playerName == "" ? "Undefined" : playerName;
+    
+    let size 
+    difficulty = div.getAttribute('data-type')
 
+    if(difficulty === 'custom')
+    {
+        const ptag = div.querySelector('p')    
+        let createdMaps = JSON.parse(localStorage.getItem('savedGames'))
+        let mapIndex = parseInt(ptag.innerHTML.split(" ")[1])
+        size = createdMaps[mapIndex-1].tableSize    
+        difficulty = 'custom'
+        myGame = new game(difficulty, size, undefined, undefined, undefined, undefined, createdMaps[mapIndex-1].squareLocation, playerName);
+    }
+    else
+    {
+        switch (difficulty) {
+            case "easy":
+              size = 7;
+              break;
+            case "advanced":
+                size = 7;
+              break;
+            case "extreme":
+                size = 10;
+              break;
+            default:
+                size = 7;
+        }
+        myGame = new game(difficulty, size, undefined, undefined, undefined, undefined, undefined, playerName);
+    }
+    table.innerHTML = ""
     createTable(myGame)
-})
+
+  });
+
 
 // bulb inserting //
 table.addEventListener('click', function (e) {
@@ -427,8 +454,6 @@ table.addEventListener('click', function (e) {
                 if (!myGame.check(row, col)) {
 
                     table.rows[row].cells[col].classList.add('highlight')
-                    setTimeout(() => { table.rows[row].cells[col].classList.remove('highlight') }, 500);
-
                     return
                 }
 
@@ -448,35 +473,41 @@ table.addEventListener('click', function (e) {
         }
     }
     if (gameWon(myGame)) {
-        score = totalSeconds
-        winText.innerHTML = `${username}, score: ${score} seconds`
-        winText.classList.add('winStyle')
-        winText.style.display = 'block'
+        
+        setTimeout(() => {
+            alert("Niiice you won") 
+            // code to be executed after 1 second
+          }, 100);
+        // score = totalSeconds
+        // winText.innerHTML = `${username}, score: ${score} seconds`
+        // winText.classList.add('winStyle')
+        // winText.style.display = 'block'
 
-        if (localStorage.getItem('scores') === null) {
-            localStorage.setItem('scores', '[]')
-        }
-        let scoress = JSON.parse(localStorage.getItem('scores'))
-        let contains = false
+        // if (localStorage.getItem('scores') === null) {
+        //     localStorage.setItem('scores', '[]')
+        // }
+        // let scoress = JSON.parse(localStorage.getItem('scores'))
+        // let contains = false
 
-        for (let i = 0; i < scoress.length; i++) {
-            if (scoress[i].name === myGame.username && scoress[i].map === myGame.difficulty) {
-                contains = true
-                scoress[i].score = totalSeconds
-                break
-            }
-        }
-        if (!contains)
-            scoress.push({ name: myGame.username, map: myGame.difficulty, score: totalSeconds })
+        // for (let i = 0; i < scoress.length; i++) {
+        //     if (scoress[i].name === myGame.username && scoress[i].map === myGame.difficulty) {
+        //         contains = true
+        //         scoress[i].score = totalSeconds
+        //         break
+        //     }
+        // }
+        // if (!contains)
+        //     scoress.push({ name: myGame.username, map: myGame.difficulty, score: totalSeconds })
 
 
-        localStorage.setItem('scores', JSON.stringify(scoress))
+        // localStorage.setItem('scores', JSON.stringify(scoress))
     }
     else {
-        winText.style.display = 'none'
+        // winText.style.display = 'none'
     }
 })
 
+// function for creating table  //
 function createTable(obj) {
     let tbody = document.createElement('tbody')
     let size = obj.tableSize
@@ -484,8 +515,6 @@ function createTable(obj) {
         const row = document.createElement('tr')
         for (let j = 0; j < size; j++) {
             const col = document.createElement('td')
-            col.classList.add('tableDesing')
-
             if (obj.blackSquareLocation[i][j] !== -1) {
                 if (obj.blackSquareLocation[i][j] !== -2) {
                     col.innerHTML = obj.blackSquareLocation[i][j]
@@ -502,6 +531,7 @@ function createTable(obj) {
     table.appendChild(tbody);
 }
 
+// win check
 function gameWon(gameObj) {
     if (gameObj.wrongSolution) {
         gameObj.gameFinished = false

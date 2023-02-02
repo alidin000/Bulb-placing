@@ -5,67 +5,88 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Light Bulb Game</title>
-    <link rel="stylesheet" href="index.css">
+    <title>Document</title>
+    <link rel="stylesheet" href="defaultstyles.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
-    <h1 class="timer">BULB GAME</h1>
-    <h1 id="winText" style="display: none;"></h1>
-    <div id="inputPart">
-        <select style="font-size: 2em;" id="sizeOfMap" aria-placeholder="Game Mode">
-            <option value="" disabled selected>Select Difficulty</option>
-            <option value="easy">Easy</option>
-            <option value="advanced">Advanced</option>
-            <option value="extreme">Extreme</option>
-            <option value="custom">Custom Map</option>
-        </select>
-        <br>
-        <div>
-            <input style="font-size: 2em;" type="text" id="username" name="username" placeholder="Enter Username" required>
-            <button style="font-size: 2em;" type="button" id="playButton">Play</button>
-            <button style="font-size: 2em;" type="button" id="savedGames">Saved Games</button>
+    <div class="container">
+        <div class="left">
+            <div class="menu">
+                <div class="menu-item" id="playButton">Play</div>
+                <div class="menu-item" id="scoresButton">Scoreboard</div>
+                <div class="menu-item">Latest Games</div>
+                <div class="menu-item" id="customMapsButton">Custom Maps</div>
+            </div>
         </div>
-    </div>
-    <div class="scoreBoardStyle">
-        <button id="showTable">Scoreboard</button>
-        <div class="container" id="scorePart" style="display: none;">
-            <table id="tableS">
-                <thead id="theadS">
-                    <tr>
-                        <td>Name</td>
-                        <td>Map</td>
-                        <td>Score</td>
-                    </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
+        <div class="main">
+            <div class="main-item choose-game-section hide">
+                <div class="choose-name">
+                    <p>Enter your name</p>
+                    <input id="playNameInput" type="text" />
+                    <p>Choose a game</p>
+                </div>
+                <div class="choose-map">
+                    <div class="computer-maps">
+                        <p>Game maps</p>
+                        <div class="maps">
+                            <div class="map" data-type="easy">
+                                <div class="visual"></div>
+                                <p>Beginner</p>
+                            </div>
+                            <div class="map" data-type="advanced">
+                                <div class="visual"></div>
+                                <p>Advanced</p>
+                            </div>
+                            <div class="map" data-type="extreme">
+                                <div class="visual"></div>
+                                <p>Extreme</p>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="custom-maps">
+                        <p>Your custom maps</p>
+                        <div class="maps">
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="start" id="startButton">Start</div>
+            </div>
+            <div id="play-screen" class="main-item hide">
+                <div class="playerName">
+                  <span>Player Name: </span>
+                  <p></p>
+                </div>
+                <table id="table"></table>
+            </div>
+
+            <div class="main-item your-custom-maps">
+                <div class="custom-maps">
+                    <div class="maps">
+                        <div class="map">
+                            <div id="createMapButton" class="visual">
+                                <p>+</p>
+                            </div>
+                            <p >Create map</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="map-creation hide">
+                <p class="tableSize">Table size</p>
+                <input id="tsize" name="tableSize" type="number" min="5" max="10" value="5">
+                <table class="createTable"></table>
+                <button class="buttons" id="reset">Reset</button>
+                <button class="buttons" id="create">Create</button>
+            </div>
         </div>
-    </div>
-    <div id="gamePart" style="display:none;">
-        <label class="timer" id="minutes">00</label>
-        <label class="timer">:</label>
-        <label class="timer" id="seconds">00</label>
-        <table id="gameTable"></table>
-        <button style="font-size: 2em;" type="button" id="save">Save</button>
-        <button style="font-size: 2em;" type="button" id="exit">Exit</button>
-        <button style="font-size: 2em;" type="button" id="restart">Restart</button>
-    </div>
-    <div id="savedGamesPart" class="saved-games" style="display: none;">
-        <div id="tableLocations"  class="maps">
-        </div>
-        <button style="font-size: 2em;" type="button" id="exitFromSaved">Exit</button>
     </div>
 </body>
-<script src="features/timer.js"></script>
-<script src="features/gameSaving.js"></script>
+<script src="index.js"></script>
 <script src="gameLogic/demo.js"></script>
 
 </html>
-
-<!-- 
-    TODO: interface
-    TODO: map selector=> 3 levels + custom map
- -->

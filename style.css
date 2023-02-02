@@ -1,0 +1,264 @@
+.container {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    width: 1200px;
+    height: 100%;
+}
+
+body{
+    color:#0f172a;
+}
+
+.left{
+    min-width: 200px;
+    display: flex;
+}
+
+.left > .menu {
+    width: 100%;
+    margin: auto 0;
+}
+
+.left > .menu > div {
+    text-align: center;
+    padding: 15px;
+    cursor: pointer;
+    color: #0f172a;
+    margin: 0 30px;
+    border-radius: 25px;
+}
+
+.left > .menu > div:hover {
+    background-color: #0f172a;
+    color: #f8fafc;
+}
+
+.main{
+    min-width: 90%;
+    display: flex;
+}
+
+.map-creation{
+    margin-top: 10%;
+    min-width: 80%;
+}
+
+.choose-game-section {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.map {
+    cursor: pointer;
+}
+
+.map:hover .visual{
+    border: 2px solid blue;
+}
+
+.map:hover p{
+    color: blue;
+}
+.map.hovered .visual{
+    border: 4px solid blue;
+}
+
+.map.hovered p{
+    color: blue;
+}
+
+.choose-name * {
+    display: block;
+    text-align: center;
+    margin: auto;
+}
+
+.choose-name input {
+    outline: none;
+    border: 1px solid #0f172a;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.choose-name input:focus{
+    outline: 1px solid blue;
+}
+
+.choose-name p {
+    padding: 10px;
+}
+
+.map .visual {
+    width: 150px;
+    height: 150px;
+    border: 1px solid gray;
+}
+.maps {
+    display: flex; 
+    flex-wrap: wrap;
+}
+
+.map {
+    display: inline-block;
+    margin: 30px 50px;
+}
+
+
+.hide {
+    display: none;
+}
+
+.yourcustomstitle{
+    text-align: center;
+    padding: 15px;
+}
+
+
+.choose-map {
+    overflow-y: auto;
+}
+.custom-maps{
+    display: inline-block;
+}
+.right {
+    min-width: 350px;
+}
+.custom-maps, .computer-maps {
+    margin: 10px 0;
+}
+
+
+
+::-webkit-scrollbar {
+    width: 7px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #cbd5e1; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #0f172a; 
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #0f172a; 
+  }
+
+  .start{
+    padding: 15px;
+    background-color: #0f172a;
+    border-radius: 25px;
+    color: #f8fafc;
+    text-align: center;
+    width: 300px;
+    margin: 10px auto;
+    cursor: pointer;
+  }
+
+.your-custom-maps{
+    overflow-y: scroll;
+}
+
+.visual p {
+    font-size: 100px;
+    text-align: center;
+}
+
+#tsize{
+    width: 5%;
+    height: 5%;
+}
+
+.buttons{
+    height: 5%;
+    margin: 2px;
+}
+
+/* table desing */
+td {
+    border: 1.5px solid rgb(99, 99, 99);
+    background-color: rgb(255, 255, 255);
+    width: 80px;
+    height: 50px;
+    text-align: center;
+    color: rgb(255, 255, 255);
+}
+
+tr {
+    height: 50px;
+}
+
+table{
+    border-collapse: collapse;
+    margin: 1% auto;
+}
+
+
+/* for game */
+.yellowBack {
+    background-color: #eff302;
+    transition-property: background;
+    transition-duration: 0.8s;
+    transition-timing-function:ease-in;
+  }
+
+  .blackSquare {
+    background-color: #000000;
+  }
+  
+  .winStyle {
+    font-family: "Arial Black", sans-serif;
+    font-size: 4.5em;
+    letter-spacing: -1px;
+    margin: -10;
+    /* padding: -10; */
+    color: white;
+  }
+  
+  .highlight {
+    /* background-color: orange; */
+    animation-duration: 0.9s;
+    animation-name: fade-in-out;
+  }
+  
+  @keyframes fade-in-out {
+    10% {
+      background-color: rgb(255, 0, 0);
+    }
+  
+    to {
+      background-color: lightgray;
+    }
+  }
+  
+  .default{
+    background-color:rgb(255, 255, 255);
+  }
+  
+  .redBack{
+    background-color:rgb(255, 0, 0);
+  }
+  .yellowBack {
+    background-color: #eff302;
+    transition-property: background;
+    transition-duration: 0.8s;
+    transition-timing-function:ease-in;
+  }
+
+/* game screen */
+#play-screen {
+    width: 100%;
+}
+#play-screen .playerName {
+    text-align: center;
+    margin-top: 50px;
+    font-size: 40px;
+}
+
+#play-screen .playerName span {
+    color: gray;
+}
