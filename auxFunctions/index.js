@@ -28,6 +28,57 @@ document.getElementById("customMapsButton").addEventListener("click", e => {
     document.querySelector(".map-creation").classList.add("hide")
 })
 
+document.getElementById("scoresButton").addEventListener("click", (e) => {
+    // stopCount();
+    counter = 0;
+    document.querySelectorAll(".main-item").forEach((menuItem) => {
+      menuItem.classList.add("hide");
+    });
+    document.querySelector(".map-creation").classList.add("hide");
+
+    document.querySelector(".score-board").classList.remove("hide");
+  
+    let scoresSection = document.getElementById("scores");
+    
+    let scoreBoard2 = localStorage.getItem("scoreBoard");
+    scoreBoard2 = JSON.parse(scoreBoard2);
+    scoreBoard2.forEach((scr) => {
+      let score = document.createElement("div");
+      score.classList.add("score");
+      score.setAttribute("data-id", scr.uniqueId);
+  
+      let lefty = document.createElement("div");
+      lefty.classList.add("left");
+  
+      let namy = document.createElement("div");
+      let namyspan = document.createElement("span");
+      namyspan.innerText = "Name: ";
+      let namyp = document.createElement("p");
+      namyp.innerText = scr.player;
+      namy.appendChild(namyspan);
+      namy.appendChild(namyp);
+      namyp.classList.add("name");
+  
+      let mapy = document.createElement("div");
+      let mapyspan = document.createElement("span");
+      let mapyp = document.createElement("p");
+      mapy.appendChild(mapyspan);
+      mapy.appendChild(mapyp);
+      mapyspan.innerText = "Map: ";
+      mapy.classList.add("mapy");
+      mapyp.innerText = scr.tableName;
+  
+      lefty.appendChild(namy);
+      lefty.append(mapy);
+  
+      let righty = document.createElement("div");
+      righty.classList.add("righty");
+      righty.innerText = scr.totalTime + " sec";
+      score.appendChild(lefty);
+      score.appendChild(righty);
+      scoresSection.appendChild(score);
+    });
+  });
 
 // custom map creation part //
 document.querySelector('#tsize').addEventListener('input', e => {
@@ -115,7 +166,17 @@ initialize()
 function initialize()
 {
     const customMaps = document.querySelectorAll('.custom-maps')
-    let createdMaps = JSON.parse(localStorage.getItem('savedGames'))
+    let createdMaps
+
+    if(localStorage.getItem('savedGames')===null)
+    {
+        createdMaps= []
+    }
+    else
+    {
+        createdMaps = JSON.parse(localStorage.getItem('savedGames'))
+    }
+
     let i = 0
     customMaps.forEach(element => {
         element.innerHTML =""

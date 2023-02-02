@@ -50,7 +50,7 @@
                     <div class="custom-maps">
                         <p>Your custom maps</p>
                         <div class="maps">
-                            
+
                         </div>
                     </div>
                 </div>
@@ -58,12 +58,64 @@
             </div>
             <div id="play-screen" class="main-item hide">
                 <div class="playerName">
-                  <span>Player Name: </span>
-                  <p></p>
+                    <span>Player Name: </span>
+                    <p></p>
+                    <label class="timer" id="minutes">00</label>
+                    <label class="timer">:</label>
+                    <label class="timer" id="seconds">00</label>
                 </div>
                 <table id="table"></table>
+                <button style="font-size: 2em;" type="button" id="save">Save</button>
+                <button style="font-size: 2em;" type="button" id="exit">Exit</button>
+                <button style="font-size: 2em;" type="button" id="restart">Restart</button>
             </div>
+            <div class="main-item score-board hide">
+                <h1 class="scoreboardh1">Score Board</h1>
+                <div class="scores" id="scores">
+                    <div class="score" data-id="xxxxxxxxx">
+                        <div class="left">
+                            <div class="name">
+                                <span>Name:</span>
+                                <p>Tommy</p>
+                            </div>
+                            <div class="mapy">
+                                <span>Map:</span>
+                                <p>map</p>
+                            </div>
 
+                        </div>
+                        <div class="righty">6 sec</div>
+                    </div>
+                    <div class="score" data-id="xxxxxxxxx">
+                        <div class="left">
+                            <div class="name">
+                                <span>Name:</span>
+                                <p>Tommy</p>
+                            </div>
+                            <div class="mapy">
+                                <span>Map:</span>
+                                <p>map</p>
+                            </div>
+
+                        </div>
+                        <div class="righty">6 sec</div>
+                    </div>
+                    <div class="score" data-id="xxxxxxxxx">
+                        <div class="left">
+                            <div class="name">
+                                <span>Name:</span>
+                                <p>Tommy</p>
+                            </div>
+                            <div class="mapy">
+                                <span>Map:</span>
+                                <p>map</p>
+                            </div>
+
+                        </div>
+                        <div class="righty">6 sec</div>
+                    </div>
+                </div>
+            </div>
             <div class="main-item your-custom-maps">
                 <div class="custom-maps">
                     <div class="maps">
@@ -71,7 +123,7 @@
                             <div id="createMapButton" class="visual">
                                 <p>+</p>
                             </div>
-                            <p >Create map</p>
+                            <p>Create map</p>
                         </div>
                     </div>
                 </div>
@@ -86,7 +138,8 @@
         </div>
     </div>
 </body>
-<script src="index.js"></script>
+<script src="auxFunctions/index.js"></script>
 <script src="gameLogic/demo.js"></script>
+<script src="auxFunctions/timer.js"></script>
 
 </html>

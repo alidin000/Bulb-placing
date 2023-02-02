@@ -6,21 +6,21 @@
     height: 100%;
 }
 
-body{
-    color:#0f172a;
+body {
+    color: #0f172a;
 }
 
-.left{
+.left {
     min-width: 200px;
     display: flex;
 }
 
-.left > .menu {
+.left>.menu {
     width: 100%;
     margin: auto 0;
 }
 
-.left > .menu > div {
+.left>.menu>div {
     text-align: center;
     padding: 15px;
     cursor: pointer;
@@ -29,19 +29,20 @@ body{
     border-radius: 25px;
 }
 
-.left > .menu > div:hover {
+.left>.menu>div:hover {
     background-color: #0f172a;
     color: #f8fafc;
 }
 
-.main{
+.main {
     min-width: 90%;
     display: flex;
 }
 
-.map-creation{
+.map-creation {
     margin-top: 10%;
     min-width: 80%;
+    text-align: center;
 }
 
 .choose-game-section {
@@ -54,18 +55,19 @@ body{
     cursor: pointer;
 }
 
-.map:hover .visual{
+.map:hover .visual {
     border: 2px solid blue;
 }
 
-.map:hover p{
+.map:hover p {
     color: blue;
 }
-.map.hovered .visual{
+
+.map.hovered .visual {
     border: 4px solid blue;
 }
 
-.map.hovered p{
+.map.hovered p {
     color: blue;
 }
 
@@ -82,7 +84,7 @@ body{
     padding: 5px;
 }
 
-.choose-name input:focus{
+.choose-name input:focus {
     outline: 1px solid blue;
 }
 
@@ -95,8 +97,9 @@ body{
     height: 150px;
     border: 1px solid gray;
 }
+
 .maps {
-    display: flex; 
+    display: flex;
     flex-wrap: wrap;
 }
 
@@ -110,7 +113,7 @@ body{
     display: none;
 }
 
-.yourcustomstitle{
+.yourcustomstitle {
     text-align: center;
     padding: 15px;
 }
@@ -119,13 +122,17 @@ body{
 .choose-map {
     overflow-y: auto;
 }
-.custom-maps{
+
+.custom-maps {
     display: inline-block;
 }
+
 .right {
     min-width: 350px;
 }
-.custom-maps, .computer-maps {
+
+.custom-maps,
+.computer-maps {
     margin: 10px 0;
 }
 
@@ -133,22 +140,23 @@ body{
 
 ::-webkit-scrollbar {
     width: 7px;
-  }
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
-    background: #cbd5e1; 
-  }
-   
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: #0f172a; 
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background: #0f172a; 
-  }
+}
 
-  .start{
+/* Track */
+::-webkit-scrollbar-track {
+    background: #cbd5e1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #0f172a;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #0f172a;
+}
+
+.start {
     padding: 15px;
     background-color: #0f172a;
     border-radius: 25px;
@@ -157,9 +165,10 @@ body{
     width: 300px;
     margin: 10px auto;
     cursor: pointer;
-  }
+}
 
-.your-custom-maps{
+.your-custom-maps {
+    width: 100%;
     overflow-y: scroll;
 }
 
@@ -168,15 +177,11 @@ body{
     text-align: center;
 }
 
-#tsize{
+#tsize {
     width: 5%;
     height: 5%;
 }
 
-.buttons{
-    height: 5%;
-    margin: 2px;
-}
 
 /* table desing */
 td {
@@ -192,7 +197,7 @@ tr {
     height: 50px;
 }
 
-table{
+table {
     border-collapse: collapse;
     margin: 1% auto;
 }
@@ -203,56 +208,58 @@ table{
     background-color: #eff302;
     transition-property: background;
     transition-duration: 0.8s;
-    transition-timing-function:ease-in;
-  }
+    transition-timing-function: ease-in;
+}
 
-  .blackSquare {
+.blackSquare {
     background-color: #000000;
-  }
-  
-  .winStyle {
+}
+
+.winStyle {
     font-family: "Arial Black", sans-serif;
     font-size: 4.5em;
     letter-spacing: -1px;
     margin: -10;
     /* padding: -10; */
     color: white;
-  }
-  
-  .highlight {
+}
+
+.highlight {
     /* background-color: orange; */
     animation-duration: 0.9s;
     animation-name: fade-in-out;
-  }
-  
-  @keyframes fade-in-out {
+}
+
+@keyframes fade-in-out {
     10% {
-      background-color: rgb(255, 0, 0);
+        background-color: rgb(255, 0, 0);
     }
-  
+
     to {
-      background-color: lightgray;
+        background-color: lightgray;
     }
-  }
-  
-  .default{
-    background-color:rgb(255, 255, 255);
-  }
-  
-  .redBack{
-    background-color:rgb(255, 0, 0);
-  }
-  .yellowBack {
+}
+
+.default {
+    background-color: rgb(255, 255, 255);
+}
+
+.redBack {
+    background-color: rgb(255, 0, 0);
+}
+
+.yellowBack {
     background-color: #eff302;
     transition-property: background;
     transition-duration: 0.8s;
-    transition-timing-function:ease-in;
-  }
+    transition-timing-function: ease-in;
+}
 
 /* game screen */
 #play-screen {
     width: 100%;
 }
+
 #play-screen .playerName {
     text-align: center;
     margin-top: 50px;
@@ -261,4 +268,97 @@ table{
 
 #play-screen .playerName span {
     color: gray;
+}
+
+.timer {
+    font-size: 1.5em;
+    size: 1.5em;
+}
+
+
+/* buttons */
+.buttons {
+    height: 5%;
+    margin: 2px;
+    display: flex;
+}
+
+button {
+    background-color: white;
+    border-radius: 15px;
+    padding: 10px;
+    outline: none;
+    border: none;
+    outline: 2px solid black;
+    align-items: center;
+}
+
+button:hover {
+    outline: 2px solid rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    background-color: #0f172a;
+}
+
+
+/* scoreboard */
+.score-board {
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+    align-items: center;
+    width: 100%;
+
+}
+
+.score {
+    display: flex;
+    flex: row;
+    /* border: 1px solid #0f172a; */
+    margin-bottom: 15px;
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: #0f172a 2px 2px 5px;
+    cursor: pointer;
+    width: 70%;
+    margin: 15px auto;
+}
+
+.score:hover {
+    background-color: #cbd5e1;
+}
+
+.score .left {
+    display: flex;
+    flex-direction: column;
+}
+
+.score .left * * {
+    display: inline;
+}
+
+.score .left * span {
+    color: gray;
+}
+
+.score .left .name {
+    font-size: 20px;
+}
+
+.scoreboardh1 {
+    text-align: center;
+    font-size: 70px;
+    margin-bottom: 60px;
+}
+
+.righty {
+    font-weight: bold;
+}
+
+.score-board.hide {
+    display: none;
+}
+
+.scores {
+    width: 100%;
+    overflow-y: scroll;
 }

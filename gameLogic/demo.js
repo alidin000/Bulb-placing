@@ -427,6 +427,8 @@ document.getElementById("startButton").addEventListener("click", (e) => {
         }
         myGame = new game(difficulty, size, undefined, undefined, undefined, undefined, undefined, playerName);
     }
+    clearInterval(helperFunc)
+    startTimer(0)
     table.innerHTML = ""
     createTable(myGame)
 
