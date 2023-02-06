@@ -47,6 +47,12 @@ document.getElementById("scoresButton").addEventListener("click", (e) => {
     scoresSection.innerHTML = ""
     let scoreBoard2 = localStorage.getItem("scores") === null ? '[]' : localStorage.getItem("scores");
     scoreBoard2 = JSON.parse(scoreBoard2);
+    
+    //sorting asc
+    scoreBoard2.sort(function(a, b) {
+        return a.score - b.score;
+      });
+
     scoreBoard2.forEach((scr) => {
         let score = document.createElement("div");
         score.classList.add("score");
