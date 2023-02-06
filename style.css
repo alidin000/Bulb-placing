@@ -291,6 +291,7 @@ button {
     border: none;
     outline: 2px solid black;
     align-items: center;
+    cursor: pointer;
 }
 
 button:hover {
@@ -361,4 +362,28 @@ button:hover {
 .scores {
     width: 100%;
     overflow-y: scroll;
+}
+
+/* saved games part */
+.latest-games{
+    width: 100%;
+}
+
+.savedGamesLabel{
+    text-align: center;
+    font-size: 70px;
+    margin-bottom: 60px 60px;
+}
+
+.savedGamesLabel span {
+    color: rgb(0, 0, 0);
+}
+
+.tableView{
+    width: 25%;
+}
+
+#info{
+    font-size: medium;
+    background-color: red;
 }

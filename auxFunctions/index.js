@@ -25,60 +25,65 @@ document.getElementById("customMapsButton").addEventListener("click", e => {
     })
 
     document.querySelector(".your-custom-maps").classList.remove("hide");
-    document.querySelector(".map-creation").classList.add("hide")
+})
+
+document.getElementById("latestGamesButton").addEventListener("click", e => {
+    document.querySelectorAll(".main-item").forEach(menuItem => {
+        menuItem.classList.add("hide");
+    })
+    document.querySelector('#savedMaps').innerHTML = ''
+    createTableView()
+    document.querySelector(".latest-games").classList.remove("hide");
 })
 
 document.getElementById("scoresButton").addEventListener("click", (e) => {
-    // stopCount();
-    counter = 0;
     document.querySelectorAll(".main-item").forEach((menuItem) => {
-      menuItem.classList.add("hide");
+        menuItem.classList.add("hide");
     });
-    document.querySelector(".map-creation").classList.add("hide");
 
     document.querySelector(".score-board").classList.remove("hide");
-  
+
     let scoresSection = document.getElementById("scores");
-    
-    let scoreBoard2 = localStorage.getItem("scoreBoard");
+    scoresSection.innerHTML = ""
+    let scoreBoard2 = localStorage.getItem("scores") === null ? '[]' : localStorage.getItem("scores");
     scoreBoard2 = JSON.parse(scoreBoard2);
     scoreBoard2.forEach((scr) => {
-      let score = document.createElement("div");
-      score.classList.add("score");
-      score.setAttribute("data-id", scr.uniqueId);
-  
-      let lefty = document.createElement("div");
-      lefty.classList.add("left");
-  
-      let namy = document.createElement("div");
-      let namyspan = document.createElement("span");
-      namyspan.innerText = "Name: ";
-      let namyp = document.createElement("p");
-      namyp.innerText = scr.player;
-      namy.appendChild(namyspan);
-      namy.appendChild(namyp);
-      namyp.classList.add("name");
-  
-      let mapy = document.createElement("div");
-      let mapyspan = document.createElement("span");
-      let mapyp = document.createElement("p");
-      mapy.appendChild(mapyspan);
-      mapy.appendChild(mapyp);
-      mapyspan.innerText = "Map: ";
-      mapy.classList.add("mapy");
-      mapyp.innerText = scr.tableName;
-  
-      lefty.appendChild(namy);
-      lefty.append(mapy);
-  
-      let righty = document.createElement("div");
-      righty.classList.add("righty");
-      righty.innerText = scr.totalTime + " sec";
-      score.appendChild(lefty);
-      score.appendChild(righty);
-      scoresSection.appendChild(score);
+        let score = document.createElement("div");
+        score.classList.add("score");
+        score.setAttribute("data-id", scr.uniqueId);
+
+        let lefty = document.createElement("div");
+        lefty.classList.add("left");
+
+        let namy = document.createElement("div");
+        let namyspan = document.createElement("span");
+        namyspan.innerText = "Name: ";
+        let namyp = document.createElement("p");
+        namyp.innerText = scr.name;
+        namy.appendChild(namyspan);
+        namy.appendChild(namyp);
+        namyp.classList.add("name");
+
+        let mapy = document.createElement("div");
+        let mapyspan = document.createElement("span");
+        let mapyp = document.createElement("p");
+        mapy.appendChild(mapyspan);
+        mapy.appendChild(mapyp);
+        mapyspan.innerText = "Map: ";
+        mapy.classList.add("mapy");
+        mapyp.innerText = scr.map;
+
+        lefty.appendChild(namy);
+        lefty.append(mapy);
+
+        let righty = document.createElement("div");
+        righty.classList.add("righty");
+        righty.innerText = scr.score + " sec";
+        score.appendChild(lefty);
+        score.appendChild(righty);
+        scoresSection.appendChild(score);
     });
-  });
+});
 
 // custom map creation part //
 document.querySelector('#tsize').addEventListener('input', e => {
@@ -133,16 +138,15 @@ document.querySelector('#reset').addEventListener('click', function (e) {
 
 document.querySelector('#create').addEventListener('click', function (e) {
     let squares = []
-    let table = document.querySelector('.createTable');
-
-    for (let i = 0; i < table.rows.length; i++) {
+    const custTable = document.querySelector('.createTable');
+    for (let i = 0; i < custTable.rows.length; i++) {
         squares[i] = []
-        for (let j = 0; j < table.rows[i].childNodes.length; j++) {
-            if (table.rows[i].childNodes[j].innerHTML !== ' ') {
-                squares[i][j] = parseInt(table.rows[i].childNodes[j].innerHTML)
+        for (let j = 0; j < custTable.rows[i].childNodes.length; j++) {
+            if (custTable.rows[i].childNodes[j].innerHTML !== ' ') {
+                squares[i][j] = parseInt(custTable.rows[i].childNodes[j].innerHTML)
             }
             else {
-                if (table.rows[i].childNodes[j].style.backgroundColor === 'black') {
+                if (custTable.rows[i].childNodes[j].style.backgroundColor === 'black') {
                     squares[i][j] = -2
                 }
                 else {
@@ -151,43 +155,53 @@ document.querySelector('#create').addEventListener('click', function (e) {
             }
         }
     }
-    let custMap = new map("custom", table.rows.length, squares)
-    if (localStorage.getItem('savedGames') === null)
-        localStorage.setItem('savedGames', '[]')
+    let custMap = new map("custom", custTable.rows.length, squares)
+    if (localStorage.getItem('savedMaps') === null)
+        localStorage.setItem('savedMaps', '[]')
 
-    let tempO = JSON.parse(localStorage.getItem('savedGames'))
+    let tempO = JSON.parse(localStorage.getItem('savedMaps'))
 
     tempO.push(custMap)
 
-    localStorage.setItem('savedGames', JSON.stringify(tempO))
+    localStorage.setItem('savedMaps', JSON.stringify(tempO))
     document.getElementById("playButton").click()
 })
 initialize()
-function initialize()
-{
+
+// aux functions
+function initialize() {
     const customMaps = document.querySelectorAll('.custom-maps')
     let createdMaps
 
-    if(localStorage.getItem('savedGames')===null)
-    {
-        createdMaps= []
+    if (localStorage.getItem('savedMaps') === null) {
+        createdMaps = []
     }
-    else
-    {
-        createdMaps = JSON.parse(localStorage.getItem('savedGames'))
+    else {
+        createdMaps = JSON.parse(localStorage.getItem('savedMaps'))
     }
 
-    let i = 0
+    let k = 0
     customMaps.forEach(element => {
-        element.innerHTML =""
+        element.innerHTML = ""
         for (let index = 0; index < createdMaps.length; index++) {
             let div = document.createElement('div')
             let div2 = document.createElement('div')
             let p = document.createElement('p')
             p.innerHTML = "Map " + (index + 1)
             div.classList.add("map")
-            div.setAttribute('data-type','custom')
+            div.setAttribute('data-type', 'custom')
             div2.classList.add("visual")
+
+            let bulbLocation = []
+            for (let t = 0; t < createdMaps[index].tableSize; t++) {
+                bulbLocation[t] = []
+                for (let j = 0; j < createdMaps[index].tableSize; j++) {
+                    bulbLocation[t][j] = 0
+                }
+            }
+            // console.log(bulbLocation);
+            tableView(createdMaps[index].squareLocation, bulbLocation, div2)
+
             div.appendChild(div2)
             div.appendChild(p)
             element.appendChild(div)
@@ -200,8 +214,7 @@ function initialize()
                 div.classList.add("hovered");
             });
         }
-        if(i > 0)
-        {
+        if (k > 0) {
             let div = document.createElement('div')
             let div2 = document.createElement('div')
             let p = document.createElement('p')
@@ -237,10 +250,123 @@ function initialize()
                 document.querySelector(".createTable").appendChild(tbody)
             })
         }
-        i++
+        k++
     });
 }
+function createTableView() {
 
+    let user = document.getElementById("playNameInput").value;
+
+    if (localStorage.getItem(user) === null) {
+        document.getElementById('info').innerHTML = 'You do not have any saved games or you did not enter your username correctly!'
+        return
+    }
+    document.getElementById('info').innerHTML = ''
+    let tempArr = JSON.parse(localStorage.getItem(user))
+    for (let x = 0; x < tempArr.length; x++) {
+        let div1 = document.createElement('div')
+        let play = document.createElement('button')
+        let remove = document.createElement('button')
+        let ptag = document.createElement('p')
+        div1.classList.add('map')
+        div1.classList.add('tableView')
+        ptag.innerHTML = x
+        ptag.style.display = 'none'
+
+        div1.classList.add('map')
+        play.innerHTML = `Load`
+        play.style = "font-size: 2em;"
+        play.type = 'submit'
+        play.addEventListener('click', doIt)
+
+        remove.innerHTML = `Remove`
+        remove.style = "font-size: 2em;"
+        remove.type = 'submit'
+        remove.addEventListener('click', function(e){
+            let tt = parseInt(e.target.previousElementSibling.innerHTML)
+
+            let user = document.querySelector('#playNameInput').value
+            let tempObj = JSON.parse(localStorage.getItem(user))
+            tempObj.splice(tt, 1);
+            localStorage.setItem(user, JSON.stringify(tempObj))
+            document.getElementById("latestGamesButton").click()
+        })
+        tableView(tempArr[x].blackSquareLocation, tempArr[x].bulbLocation, div1)
+
+        div1.appendChild(play)
+        div1.appendChild(ptag)
+        div1.appendChild(remove)
+        document.querySelector('#savedMaps').appendChild(div1)
+    }
+
+
+
+    function doIt(e) {
+        let tt = parseInt(e.target.nextElementSibling.innerHTML)
+
+        let user = document.querySelector('#playNameInput').value
+        let tempObj = JSON.parse(localStorage.getItem(user))[tt]
+
+        document.querySelectorAll(".main-item").forEach((menuItem) => {
+            menuItem.classList.add("hide");
+        });
+        document.getElementById("play-screen").classList.remove("hide");
+
+        document.querySelectorAll(".hovered").forEach((hovered) => {
+            hovered.classList.remove("hovered");
+        });
+        document.querySelector(".playerName").querySelector("p").innerText =
+        user == "" ? "Undefined" : user;
+
+        clearInterval(helperFunc)
+        startTimer(tempObj.timeCount)
+        table.innerHTML = ""
+        myGame = new game(tempObj.difficulty, tempObj.tableSize, tempObj.timeCount, tempObj.wrongSolution, tempObj.gameFinished, tempObj.bulbLocation, tempObj.blackSquareLocation, tempObj.username)
+
+        createTable(myGame)
+
+        myGame.removeRed()
+
+        for (let g = 0; g < myGame.bulbLocation.length; g++) {
+            for (let gg = 0; gg < myGame.bulbLocation[0].length; gg++) {
+                if (myGame.bulbLocation[g][gg] === 1) {
+                    table.rows[g].cells[gg].innerHTML = `<i class="fa fa-lightbulb-o" style="font-size: 30px; color: yellow; transition-duration:.6s;"></i>`
+                    myGame.light(g, gg)
+                }
+            }
+        }
+    }
+}
+
+function tableView(blackSquareLocation, bulbLocation, divv) {
+    let table = document.createElement('table')
+    let tbody = document.createElement('tbody')
+    let size = blackSquareLocation.length
+    for (let i = 0; i < size; i++) {
+        const row = document.createElement('tr')
+        for (let j = 0; j < size; j++) {
+            const col = document.createElement('td')
+            col.classList.add('tableDesing')
+
+            if (blackSquareLocation[i][j] !== -1) {
+                if (blackSquareLocation[i][j] !== -2) {
+                    col.innerHTML = blackSquareLocation[i][j]
+                    col.style.color = 'white'
+                }
+                col.style.backgroundColor = 'black'
+            }
+            else if (bulbLocation[i][j] === 1) {
+                col.innerHTML = `<i class="fa fa-lightbulb-o" style="font-size: 30px; color: yellow; transition-duration:.6s;"></i>`
+            }
+
+            row.appendChild(col);
+        }
+        tbody.appendChild(row);
+    }
+
+    table.appendChild(tbody);
+    divv.append(table)
+}
 
 // adding hovered to able to choose a map  //
 document.querySelectorAll(".map").forEach((gameMap) => {
@@ -251,3 +377,39 @@ document.querySelectorAll(".map").forEach((gameMap) => {
         gameMap.classList.add("hovered");
     });
 });
+
+
+// button eventListeners
+const saveButton = document.querySelector('#save')
+const exitButton = document.querySelector('#exit')
+const restartButton = document.querySelector('#restart')
+
+restartButton.addEventListener('click', function () {
+    myGame = new game(myGame.difficulty, table.rows.length, undefined, undefined, undefined, undefined, undefined, myGame.username);
+    clearInterval(helperFunc)
+    startTimer(0)
+    table.innerHTML = ''
+    createTable(myGame)
+    if (confirm('Do you want to save the game?')) {
+        saveButton.click()
+    }
+})
+
+exitButton.addEventListener('click', function () {
+    document.getElementById("playButton").click()
+    clearInterval(helperFunc)
+    if (confirm("Do you want to save the game?")) {
+        saveButton.click()
+    }
+})
+
+saveButton.addEventListener('click', function () {
+    if (localStorage.getItem(myGame.username) === null)
+        localStorage.setItem(myGame.username, '[]')
+
+    let tempO = JSON.parse(localStorage.getItem(myGame.username))
+
+    tempO.push(myGame)
+
+    localStorage.setItem(myGame.username, JSON.stringify(tempO))
+})

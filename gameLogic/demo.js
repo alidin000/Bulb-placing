@@ -404,7 +404,7 @@ document.getElementById("startButton").addEventListener("click", (e) => {
     if(difficulty === 'custom')
     {
         const ptag = div.querySelector('p')    
-        let createdMaps = JSON.parse(localStorage.getItem('savedGames'))
+        let createdMaps = JSON.parse(localStorage.getItem('savedMaps'))
         let mapIndex = parseInt(ptag.innerHTML.split(" ")[1])
         size = createdMaps[mapIndex-1].tableSize    
         difficulty = 'custom'
@@ -478,34 +478,26 @@ table.addEventListener('click', function (e) {
         
         setTimeout(() => {
             alert("Niiice you won") 
-            // code to be executed after 1 second
-          }, 100);
-        // score = totalSeconds
-        // winText.innerHTML = `${username}, score: ${score} seconds`
-        // winText.classList.add('winStyle')
-        // winText.style.display = 'block'
+          }, 500);
+          
+        if (localStorage.getItem('scores') === null) {
+            localStorage.setItem('scores', '[]')
+        }
+        let scoress = JSON.parse(localStorage.getItem('scores'))
+        let contains = false
 
-        // if (localStorage.getItem('scores') === null) {
-        //     localStorage.setItem('scores', '[]')
-        // }
-        // let scoress = JSON.parse(localStorage.getItem('scores'))
-        // let contains = false
-
-        // for (let i = 0; i < scoress.length; i++) {
-        //     if (scoress[i].name === myGame.username && scoress[i].map === myGame.difficulty) {
-        //         contains = true
-        //         scoress[i].score = totalSeconds
-        //         break
-        //     }
-        // }
-        // if (!contains)
-        //     scoress.push({ name: myGame.username, map: myGame.difficulty, score: totalSeconds })
+        for (let i = 0; i < scoress.length; i++) {
+            if (scoress[i].name === myGame.username && scoress[i].map === myGame.difficulty) {
+                contains = true
+                scoress[i].score = totalSeconds
+                break
+            }
+        }
+        if (!contains)
+            scoress.push({ name: myGame.username, map: myGame.difficulty, score: totalSeconds })
 
 
-        // localStorage.setItem('scores', JSON.stringify(scoress))
-    }
-    else {
-        // winText.style.display = 'none'
+        localStorage.setItem('scores', JSON.stringify(scoress))
     }
 })
 

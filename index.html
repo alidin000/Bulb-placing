@@ -17,12 +17,12 @@
             <div class="menu">
                 <div class="menu-item" id="playButton">Play</div>
                 <div class="menu-item" id="scoresButton">Scoreboard</div>
-                <div class="menu-item">Latest Games</div>
+                <div class="menu-item" id="latestGamesButton">Latest Games</div>
                 <div class="menu-item" id="customMapsButton">Custom Maps</div>
             </div>
         </div>
         <div class="main">
-            <div class="main-item choose-game-section hide">
+            <div class="main-item choose-game-section ">
                 <div class="choose-name">
                     <p>Enter your name</p>
                     <input id="playNameInput" type="text" />
@@ -72,51 +72,27 @@
             <div class="main-item score-board hide">
                 <h1 class="scoreboardh1">Score Board</h1>
                 <div class="scores" id="scores">
-                    <div class="score" data-id="xxxxxxxxx">
-                        <div class="left">
-                            <div class="name">
-                                <span>Name:</span>
-                                <p>Tommy</p>
-                            </div>
-                            <div class="mapy">
-                                <span>Map:</span>
-                                <p>map</p>
-                            </div>
-
+                    
+                </div>
+            </div>
+            <div class="main-item latest-games hide">
+                <div class="savedGamesLabel">
+                    <span>Saved Games</span>
+                    <p id="info"></p>
+                </div>
+                <div class="choose-name">
+                    <p>Choose a game</p>
+                </div>
+                <div class="choose-map">
+                    <div class="saved-games">
+                        <p>Your saved games</p>
+                        <div class="maps" id="savedMaps">
+                            
                         </div>
-                        <div class="righty">6 sec</div>
-                    </div>
-                    <div class="score" data-id="xxxxxxxxx">
-                        <div class="left">
-                            <div class="name">
-                                <span>Name:</span>
-                                <p>Tommy</p>
-                            </div>
-                            <div class="mapy">
-                                <span>Map:</span>
-                                <p>map</p>
-                            </div>
-
-                        </div>
-                        <div class="righty">6 sec</div>
-                    </div>
-                    <div class="score" data-id="xxxxxxxxx">
-                        <div class="left">
-                            <div class="name">
-                                <span>Name:</span>
-                                <p>Tommy</p>
-                            </div>
-                            <div class="mapy">
-                                <span>Map:</span>
-                                <p>map</p>
-                            </div>
-
-                        </div>
-                        <div class="righty">6 sec</div>
                     </div>
                 </div>
             </div>
-            <div class="main-item your-custom-maps">
+            <div class="main-item your-custom-maps hide">
                 <div class="custom-maps">
                     <div class="maps">
                         <div class="map">
@@ -128,7 +104,7 @@
                     </div>
                 </div>
             </div>
-            <div class="map-creation hide">
+            <div class="main-item map-creation hide">
                 <p class="tableSize">Table size</p>
                 <input id="tsize" name="tableSize" type="number" min="5" max="10" value="5">
                 <table class="createTable"></table>
