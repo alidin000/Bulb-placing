@@ -47,11 +47,11 @@ document.getElementById("scoresButton").addEventListener("click", (e) => {
     scoresSection.innerHTML = ""
     let scoreBoard2 = localStorage.getItem("scores") === null ? '[]' : localStorage.getItem("scores");
     scoreBoard2 = JSON.parse(scoreBoard2);
-    
+
     //sorting asc
-    scoreBoard2.sort(function(a, b) {
+    scoreBoard2.sort(function (a, b) {
         return a.score - b.score;
-      });
+    });
 
     scoreBoard2.forEach((scr) => {
         let score = document.createElement("div");
@@ -177,6 +177,104 @@ initialize()
 // aux functions
 function initialize() {
     const customMaps = document.querySelectorAll('.custom-maps')
+
+    // begginer map table view
+    const beg = document.querySelector('#beginner');
+    beg.innerHTML = ''
+    let squareLocationBeg = new Array(7);
+    let bulbLocationBeg = new Array(7);
+
+    for (let i = 0; i < squareLocationBeg.length; i++) {
+        squareLocationBeg[i] = new Array(7)
+        bulbLocationBeg[i] = new Array(7)
+        for (let j = 0; j < 7; j++) {
+            squareLocationBeg[i][j] = -1
+            bulbLocationBeg[i][j] = -1
+        }
+    }
+    squareLocationBeg[0][3] = 1;
+    squareLocationBeg[1][1] = 0;
+    squareLocationBeg[1][5] = 2;
+    squareLocationBeg[3][0] = -2;
+    squareLocationBeg[3][3] = -2;
+    squareLocationBeg[3][6] = -2;
+    squareLocationBeg[5][1] = -2;
+    squareLocationBeg[5][5] = 2;
+    squareLocationBeg[6][3] = 3;
+
+    tableView(squareLocationBeg, bulbLocationBeg, beg)
+
+    //advanced
+
+    const advg = document.querySelector('#advanced');
+    advg.innerHTML = ''
+    let squareLocationAdvg = new Array(7);
+    let bulbLocationAdvg = new Array(7);
+
+    for (let i = 0; i < squareLocationAdvg.length; i++) {
+        squareLocationAdvg[i] = new Array(7)
+        bulbLocationAdvg[i] = new Array(7)
+        for (let j = 0; j < 7; j++) {
+            squareLocationAdvg[i][j] = -1
+            bulbLocationAdvg[i][j] = -1
+        }
+    }
+    squareLocationAdvg[0][2] = 0;
+    squareLocationAdvg[0][4] = -2;
+    squareLocationAdvg[2][0] = -2;
+    squareLocationAdvg[2][2] = -2;
+    squareLocationAdvg[2][4] = 3;
+    squareLocationAdvg[2][6] = -2;
+    squareLocationAdvg[3][3] = 1;
+    squareLocationAdvg[4][0] = 2;
+    squareLocationAdvg[4][2] = -2;
+    squareLocationAdvg[4][4] = -2;
+    squareLocationAdvg[4][6] = -2;
+    squareLocationAdvg[6][2] = -2;
+    squareLocationAdvg[6][4] = 2;
+    tableView(squareLocationAdvg, bulbLocationAdvg, advg)
+
+    //extreme
+    const ext = document.querySelector('#extreme');
+    ext.innerHTML =''
+    let squareLocationExt = new Array(10);
+    let bulbLocationExt = new Array(10);
+
+    for (let i = 0; i < squareLocationExt.length; i++) {
+        squareLocationExt[i] = new Array(10)
+        bulbLocationExt[i] = new Array(10)
+        for (let j = 0; j < 10; j++) {
+            squareLocationExt[i][j] = -1
+            bulbLocationExt[i][j] = -1
+        }
+    }
+    squareLocationExt[0][1] = -2;
+    squareLocationExt[1][5] = 3;
+    squareLocationExt[1][7] = 2;
+    squareLocationExt[1][9] = -2;
+    squareLocationExt[2][1] = 0;
+    squareLocationExt[2][2] = -2;
+    squareLocationExt[2][7] = -2;
+    squareLocationExt[3][4] = -2;
+    squareLocationExt[4][1] = 1;
+    squareLocationExt[4][4] = -2;
+    squareLocationExt[4][5] = 1;
+    squareLocationExt[4][6] = -2;
+    squareLocationExt[5][3] = -2;
+    squareLocationExt[5][4] = -2;
+    squareLocationExt[5][5] = -2;
+    squareLocationExt[5][8] = 3;
+    squareLocationExt[6][5] = -2;
+    squareLocationExt[7][2] = 1;
+    squareLocationExt[7][7] = 0;
+    squareLocationExt[7][8] = -2;
+    squareLocationExt[8][0] = 3;
+    squareLocationExt[8][2] = -2;
+    squareLocationExt[8][4] = 0;
+    squareLocationExt[9][8] = 0;
+    tableView(squareLocationExt, bulbLocationExt, ext)
+
+
     let createdMaps
 
     if (localStorage.getItem('savedMaps') === null) {
@@ -290,7 +388,7 @@ function createTableView() {
         remove.innerHTML = `Remove`
         remove.style = "font-size: 2em;"
         remove.type = 'submit'
-        remove.addEventListener('click', function(e){
+        remove.addEventListener('click', function (e) {
             let tt = parseInt(e.target.previousElementSibling.innerHTML)
 
             let user = document.querySelector('#playNameInput').value
@@ -325,7 +423,7 @@ function createTableView() {
             hovered.classList.remove("hovered");
         });
         document.querySelector(".playerName").querySelector("p").innerText =
-        user == "" ? "Undefined" : user;
+            user == "" ? "Undefined" : user;
 
         clearInterval(helperFunc)
         startTimer(tempObj.timeCount)
