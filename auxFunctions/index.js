@@ -195,6 +195,7 @@ function initialize() {
             let p = document.createElement('p')
             p.innerHTML = "Map " + (index + 1)
             div.classList.add("map")
+            div.classList.add("tableView")
             div.setAttribute('data-type', 'custom')
             div2.classList.add("visual")
 
@@ -284,6 +285,7 @@ function createTableView() {
         play.style = "font-size: 2em;"
         play.type = 'submit'
         play.addEventListener('click', doIt)
+        play.classList.add('button')
 
         remove.innerHTML = `Remove`
         remove.style = "font-size: 2em;"
@@ -297,6 +299,7 @@ function createTableView() {
             localStorage.setItem(user, JSON.stringify(tempObj))
             document.getElementById("latestGamesButton").click()
         })
+        remove.classList.add('button')
         tableView(tempArr[x].blackSquareLocation, tempArr[x].bulbLocation, div1)
 
         div1.appendChild(play)
@@ -386,9 +389,9 @@ document.querySelectorAll(".map").forEach((gameMap) => {
 
 
 // button eventListeners
-const saveButton = document.querySelector('#save')
-const exitButton = document.querySelector('#exit')
-const restartButton = document.querySelector('#restart')
+const saveButton = document.querySelector('#saveButton')
+const exitButton = document.querySelector('#exitButton')
+const restartButton = document.querySelector('#restartButton')
 
 restartButton.addEventListener('click', function () {
     myGame = new game(myGame.difficulty, table.rows.length, undefined, undefined, undefined, undefined, undefined, myGame.username);

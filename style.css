@@ -93,8 +93,8 @@ body {
 }
 
 .map .visual {
-    width: 150px;
-    height: 150px;
+    /* width: auto;
+    height: auto; */
     border: 1px solid gray;
 }
 
@@ -277,13 +277,8 @@ table {
 
 
 /* buttons */
-.buttons {
-    height: 5%;
-    margin: 2px;
-    display: flex;
-}
-
-button {
+.button{
+    width: 150px;
     background-color: white;
     border-radius: 15px;
     padding: 10px;
@@ -293,11 +288,16 @@ button {
     align-items: center;
     cursor: pointer;
 }
-
-button:hover {
+.button:hover {
     outline: 2px solid rgb(0, 0, 0);
     color: rgb(255, 255, 255);
     background-color: #0f172a;
+}
+
+.buttons{
+    display: flex;
+    /* align-items: center; */
+    margin: auto;
 }
 
 

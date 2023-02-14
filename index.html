@@ -49,7 +49,7 @@
                     </div>
                     <div class="custom-maps">
                         <p>Your custom maps</p>
-                        <div class="maps">
+                        <div class="maps">  
 
                         </div>
                     </div>
@@ -65,14 +65,19 @@
                     <label class="timer" id="seconds">00</label>
                 </div>
                 <table id="table"></table>
-                <button style="font-size: 2em;" type="button" id="save">Save</button>
+                <div class="buttons">
+                    <div class="button" id="saveButton">Save</div>
+                    <div class="button" id="exitButton">Exit</div>
+                    <div class="button" id="restartButton">Restart</div>
+                </div>
+                <!-- <button style="font-size: 2em;" type="button" id="save">Save</button>
                 <button style="font-size: 2em;" type="button" id="exit">Exit</button>
-                <button style="font-size: 2em;" type="button" id="restart">Restart</button>
+                <button style="font-size: 2em;" type="button" id="restart">Restart</button> -->
             </div>
             <div class="main-item score-board hide">
                 <h1 class="scoreboardh1">Score Board</h1>
                 <div class="scores" id="scores">
-                    
+
                 </div>
             </div>
             <div class="main-item latest-games hide">
@@ -87,7 +92,7 @@
                     <div class="saved-games">
                         <p>Your saved games</p>
                         <div class="maps" id="savedMaps">
-                            
+
                         </div>
                     </div>
                 </div>
@@ -106,10 +111,12 @@
             </div>
             <div class="main-item map-creation hide">
                 <p class="tableSize">Table size</p>
-                <input id="tsize" name="tableSize" type="number" min="5" max="10" value="5">
+                <input id="tsize" name="tableSize" type="number" min="5" max="8" value="5">
                 <table class="createTable"></table>
-                <button class="buttons" id="reset">Reset</button>
-                <button class="buttons" id="create">Create</button>
+                <div class="buttons">
+                    <div class="button" id="reset">Reset</div>
+                    <div class="button" id="create">Create</div>
+                </div>
             </div>
         </div>
     </div>
