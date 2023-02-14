@@ -2,7 +2,7 @@
     margin: 0 auto;
     display: flex;
     flex-direction: row;
-    width: 1200px;
+    width: 1100px;
     height: 100%;
 }
 
@@ -263,7 +263,7 @@ table {
 #play-screen .playerName {
     text-align: center;
     margin-top: 50px;
-    font-size: 40px;
+    font-size: 20px;
 }
 
 #play-screen .playerName span {
@@ -296,8 +296,11 @@ table {
 
 .buttons{
     display: flex;
-    /* align-items: center; */
     margin: auto;
+}
+
+.savedGButtons{
+    width: 50%;
 }
 
 

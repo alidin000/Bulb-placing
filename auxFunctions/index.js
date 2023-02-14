@@ -380,13 +380,14 @@ function createTableView() {
 
         div1.classList.add('map')
         play.innerHTML = `Load`
-        play.style = "font-size: 2em;"
+        play.style = "font-size: 1.5em;"
         play.type = 'submit'
         play.addEventListener('click', doIt)
         play.classList.add('button')
+        play.classList.add('savedGButtons')
 
         remove.innerHTML = `Remove`
-        remove.style = "font-size: 2em;"
+        remove.style = "font-size: 1.5em;"
         remove.type = 'submit'
         remove.addEventListener('click', function (e) {
             let tt = parseInt(e.target.previousElementSibling.innerHTML)
@@ -398,6 +399,7 @@ function createTableView() {
             document.getElementById("latestGamesButton").click()
         })
         remove.classList.add('button')
+        remove.classList.add('savedGButtons')
         tableView(tempArr[x].blackSquareLocation, tempArr[x].bulbLocation, div1)
 
         div1.appendChild(play)
