@@ -12,16 +12,26 @@
   <li>Two light bulbs can NEVER illuminate each other!</li>
   <li>The goal of the game is to place the light bulbs so that all the white tiles are illuminated.</li>
   <li>Two light bulbs can NEVER illuminate each other!</li>
-  <li>The game is played by one player until he solves the puzzle, so there is no need to manage multiple players at the same time or divide into rounds.</li>
+  
+  <h5>Game features</h5>
+  <ul>
+     <li>Score saving</li>
+     <li>Custom maps(created map should be winnable)</li>
+     <li>Saved games</li>
+  </ul>
   
   <h5>Game visualization</h5>
   <ul>
+     <li>Main Page</li>
+     <li><img width="250" src="/resources/mainPage.png" alt="Alt text" title="Optional title"></li>
      <li>Game board</li>
-     <li><img width="250" src="/resources/gameVisual.png" alt="Alt text" title="Optional title"></li>
+     <li><img width="250" src="/resources/gameVisuals.png" alt="Alt text" title="Optional title"></li>
      <li>Saved games part</li>
      <li><img width="400" src="/resources/savedGames.png" alt="Alt text" title="Optional title"></li>
-     <li>Main page</li>
-     <li><img width="250" src="/resources/mainPage.png" alt="Alt text" title="Optional title"></li>
+     <li>ScoreBoard</li>
+     <li><img width="250" src="/resources/scoreBoard.png" alt="Alt text" title="Optional title"></li>
+     <li>Custom map </li>
+     <li><img width="250" src="/resources/customMap.png" alt="Alt text" title="Optional title"></li>
   </ul>
   
 <h2>Technologies  used</h2>
