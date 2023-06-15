@@ -1,5 +1,5 @@
 # Javascript-Game
-<h1> You can try it <a href="https://alidin000.github.io/index.html">here</a><h1>
+<h1> You can try it <a href="https://brave-plant-0da2d1710.3.azurestaticapps.net/">here</a><h1>
 <h1>Lighting Square game</h1>
 
 <p>Once upon a time, King Unnamed of Nowhereland was both smiling and crying at the same time. He was smiling because his enormous brand-new palace with many spacious rooms and corridors has just been finished. He is also crying as these rooms need to be illuminated and kept warm, but the ongoing increase of utility costs affect him as well. So now it's time to think about the placement of the palace's light bulbs. We need to place them so that everything is properly lit, but we cannot install any unnecessary bulbs.</p>
